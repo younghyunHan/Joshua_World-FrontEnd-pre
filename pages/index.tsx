@@ -1,51 +1,51 @@
 import React, { useState, useEffect } from 'react';
-// import Pagination from 'react-js-pagination';
+import Pagination from 'react-js-pagination';
 import Link from 'next/link';
-import TOP_MENU_LIST from '../TopMenuData';
-import NAV_LIST from '../NavData';
-import TOP_LIST_DATA from '../TopListData';
-import MAIN_TEXT_DATA from '../MainTextData';
+import TOP_MENU_LIST from './TopMenuData';
+import NAV_LIST from './NavData';
+import TOP_LIST_DATA from './TopListData';
+import MAIN_TEXT_DATA from './MainTextData';
 
 import './Main.module.css';
 
 function Main() {
   const [categoryVisible, setCategoryVisible] = useState(true);
-  // const [page, setPage] = useState(1);
-  // const [indexOfLastRecord, setIndexOfLastRecord] = useState(5);
-  // const [indexOfFirstRecord, setIndexOfFirstRecord] = useState(0);
+  const [page, setPage] = useState(1);
+  const [indexOfLastRecord, setIndexOfLastRecord] = useState(5);
+  const [indexOfFirstRecord, setIndexOfFirstRecord] = useState(0);
 
-  // const handlePageChange = (page) => {
-  //   setPage(page);
-  //   setIndexOfLastRecord(page * 5); // 현재 페이지 * 레코드당 페이지;
-  // };
+  const handlePageChange = (page: number) => {
+    setPage(page);
+    setIndexOfLastRecord(page * 5); // 현재 페이지 * 레코드당 페이지;
+  };
 
-  // useEffect(() => {
-  //   setIndexOfFirstRecord(indexOfLastRecord - 5); // 마지막 레코드 - 레코드당 페이지;
-  // }, [indexOfLastRecord]);
+  useEffect(() => {
+    setIndexOfFirstRecord(indexOfLastRecord - 5); // 마지막 레코드 - 레코드당 페이지;
+  }, [indexOfLastRecord]);
 
-  // const handleTextChange = (page) => {
-  //   setPage(page);
-  //   setIndexOfLastRecord(page * 10); // 현재 페이지 * 레코드당 페이지;
-  // };
+  const handleTextChange = (page: number) => {
+    setPage(page);
+    setIndexOfLastRecord(page * 10); // 현재 페이지 * 레코드당 페이지;
+  };
 
-  // useEffect(() => {
-  //   setIndexOfFirstRecord(indexOfLastRecord - 10); // 마지막 레코드 - 레코드당 페이지;
-  // }, [indexOfLastRecord]);
+  useEffect(() => {
+    setIndexOfFirstRecord(indexOfLastRecord - 10); // 마지막 레코드 - 레코드당 페이지;
+  }, [indexOfLastRecord]);
 
-  // console.log(page);
-  // console.log(indexOfLastRecord);
-  // console.log(indexOfFirstRecord);
+  console.log(page);
+  console.log(indexOfLastRecord);
+  console.log(indexOfFirstRecord);
 
   return (
     <div id='main'>
       <div id='mainWrap'>
         <header>
-          {/* <div id='topMenuWrap'>
+          <div id='topMenuWrap'>
             <ul id='topMenu'>
               {TOP_MENU_LIST.map((data, index) => {
                 return (
                   <li key={data.id} className='topMenuContent'>
-                    <Link to={data.movePath}>{data.topMenu}</Link>
+                    <Link href={data.movePath}>{data.topMenu}</Link>
                     {!(index === TOP_MENU_LIST.length - 1) && (
                       <div className='txtBar' />
                     )}
@@ -53,7 +53,7 @@ function Main() {
                 );
               })}
             </ul>
-          </div> */}
+          </div>
           <div id='headerImgBox'>
             <img id='headerImg' alt='myImg' src='/images/headerImg.png' />
           </div>
@@ -107,7 +107,7 @@ function Main() {
           <div id='listWrap'>
             <div id='list'>
               <article>
-                {/* <section id='listTop'>
+                <section id='listTop'>
                   <div id='listTopWrap'>
                     <div id='listTopOne'>
                       <div>Dev</div>
@@ -135,7 +135,7 @@ function Main() {
                     nextPageText='›' // "다음"을 나타낼 텍스트 (next, >, ...)
                     onChange={handlePageChange} // 페이지가 바뀔 때 핸들링해줄 함수
                   />
-                </section> */}
+                </section>
               </article>
             </div>
             <article>
@@ -152,15 +152,15 @@ function Main() {
                     </div>
                   );
                 })}
-                {/* <Pagination
-                      activePage={page} // 현재 페이지
-                      itemsCountPerPage={10} // 한 페이지당 보여줄 리스트 아이템의 개수
-                      totalItemsCount={TOP_LIST_DATA[0].count} // 총 아이템의 개수
-                      pageRangeDisplayed={5} //  Paginator 내에서 보여줄 페이지의 범위
-                      prevPageText='‹' // "이전"을 나타낼 텍스트 (prev, <, ...)
-                      nextPageText='›' // "다음"을 나타낼 텍스트 (next, >, ...)
-                      onChange={handleTextChange} // 페이지가 바뀔 때 핸들링해줄 함수
-                    /> */}
+                <Pagination
+                  activePage={page} // 현재 페이지
+                  itemsCountPerPage={10} // 한 페이지당 보여줄 리스트 아이템의 개수
+                  totalItemsCount={TOP_LIST_DATA[0].count} // 총 아이템의 개수
+                  pageRangeDisplayed={5} //  Paginator 내에서 보여줄 페이지의 범위
+                  prevPageText='‹' // "이전"을 나타낼 텍스트 (prev, <, ...)
+                  nextPageText='›' // "다음"을 나타낼 텍스트 (next, >, ...)
+                  onChange={handleTextChange} // 페이지가 바뀔 때 핸들링해줄 함수
+                />
               </section>
             </article>
           </div>

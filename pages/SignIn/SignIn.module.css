@@ -5,7 +5,7 @@
   height: 100vh;
 }
 
-#SignInForm {
+#signInForm {
   width: 300px;
   height: 500px;
   padding: 30px 20px;
@@ -17,7 +17,7 @@
   border-radius: 10px;
 }
 
-#SignInFormName {
+#signInFormName {
   margin-bottom: 40px;
   font-size: 60px;
   text-align: center;
@@ -34,9 +34,9 @@
   border-radius: 10px;
 }
 
-a {
+/* a {
   width: 100%;
-}
+} */
 
 #signInBtn {
   width: 100%;

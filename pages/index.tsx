@@ -6,7 +6,7 @@ import NAV_LIST from './NavData';
 import TOP_LIST_DATA from './TopListData';
 import MAIN_TEXT_DATA from './MainTextData';
 
-import './Main.module.css';
+import MainStyles from './Main.module.css';
 
 function Main() {
   const [categoryVisible, setCategoryVisible] = useState(true);
@@ -23,57 +23,66 @@ function Main() {
     setIndexOfFirstRecord(indexOfLastRecord - 5); // 마지막 레코드 - 레코드당 페이지;
   }, [indexOfLastRecord]);
 
-  const handleTextChange = (page: number) => {
-    setPage(page);
-    setIndexOfLastRecord(page * 10); // 현재 페이지 * 레코드당 페이지;
-  };
+  // const handleTextChange = (page: number) => {
+  //   setPage(page);
+  //   setIndexOfLastRecord(page * 10); // 현재 페이지 * 레코드당 페이지;
+  // };
 
-  useEffect(() => {
-    setIndexOfFirstRecord(indexOfLastRecord - 10); // 마지막 레코드 - 레코드당 페이지;
-  }, [indexOfLastRecord]);
+  // useEffect(() => {
+  //   setIndexOfFirstRecord(indexOfLastRecord - 10); // 마지막 레코드 - 레코드당 페이지;
+  // }, [indexOfLastRecord]);
 
-  console.log(page);
-  console.log(indexOfLastRecord);
-  console.log(indexOfFirstRecord);
+  // console.log(page);
+  // console.log(indexOfLastRecord);
+  // console.log(indexOfFirstRecord);
 
   return (
-    <div id='main'>
-      <div id='mainWrap'>
+    <div id={MainStyles.main}>
+      <div id={MainStyles.mainWrap}>
         <header>
-          <div id='topMenuWrap'>
-            <ul id='topMenu'>
+          <div id={MainStyles.topMenuWrap}>
+            <ul id={MainStyles.topMenu}>
               {TOP_MENU_LIST.map((data, index) => {
                 return (
-                  <li key={data.id} className='topMenuContent'>
-                    <Link href={data.movePath}>{data.topMenu}</Link>
+                  <li key={data.id} className={MainStyles.topMenuContent}>
+                    <Link
+                      href={data.movePath}
+                      className={MainStyles.goToSignIn}
+                    >
+                      {data.topMenu}
+                    </Link>
                     {!(index === TOP_MENU_LIST.length - 1) && (
-                      <div className='txtBar' />
+                      <div className={MainStyles.txtBar} />
                     )}
                   </li>
                 );
               })}
             </ul>
           </div>
-          <div id='headerImgBox'>
-            <img id='headerImg' alt='myImg' src='/images/headerImg.png' />
+          <div id={MainStyles.headerImgBox}>
+            <img
+              id={MainStyles.headerImg}
+              alt='myImg'
+              src='/images/headerImg.png'
+            />
           </div>
         </header>
-        <nav id='sideBar'>
-          <div id='sideBarOne'>
-            <img id='myImg' alt='myImg' src='/images/myImg.png' />
-            <div id='sideBarOneContent'>
-              <span id='myName'>younghyun(Black)</span>
-              <span id='myJob'>FrontDev</span>
-              <span id='profile'>프로필</span>
-              <div id='addMan'>
-                <span id='addManContent'>이웃추가</span>
+        <nav id={MainStyles.sideBar}>
+          <div id={MainStyles.sideBarOne}>
+            <img id={MainStyles.myImg} alt='myImg' src='/images/myImg.png' />
+            <div id={MainStyles.sideBarOneContent}>
+              <span id={MainStyles.myName}>younghyun(Black)</span>
+              <span id={MainStyles.myJob}>FrontDev</span>
+              <span id={MainStyles.profile}>프로필</span>
+              <div id={MainStyles.addMan}>
+                <span id={MainStyles.addManContent}>이웃추가</span>
               </div>
             </div>
           </div>
-          <div id='sideBarTwo'>
-            <div id='navData'>
+          <div id={MainStyles.sideBarTwo}>
+            <div id={MainStyles.navData}>
               <div
-                id='category'
+                id={MainStyles.category}
                 onClick={() => {
                   setCategoryVisible(!categoryVisible);
                 }}
@@ -84,9 +93,12 @@ function Main() {
                 <ul>
                   {NAV_LIST.map((navData) => {
                     return (
-                      <li key={navData.id} className='navDataContent'>
+                      <li
+                        key={navData.id}
+                        className={MainStyles.navDataContent}
+                      >
                         <img
-                          className='menuArrow'
+                          className={MainStyles.menuArrow}
                           alt='menuArrow'
                           src='/images/arrow.png'
                         />
@@ -98,22 +110,26 @@ function Main() {
               )}
             </div>
           </div>
-          <div id='searchBox'>
-            <input placeholder='검색' id='search' />
-            <img id='searchIcon' alt='searchIcon' src='/images/search.png' />
+          <div id={MainStyles.searchBox}>
+            <input placeholder='검색' id={MainStyles.search} />
+            <img
+              id={MainStyles.searchIcon}
+              alt='searchIcon'
+              src='/images/search.png'
+            />
           </div>
         </nav>
-        <div id='mainContent'>
-          <div id='listWrap'>
-            <div id='list'>
+        <div id={MainStyles.mainContent}>
+          <div id={MainStyles.listWrap}>
+            <div id={MainStyles.list}>
               <article>
-                <section id='listTop'>
-                  <div id='listTopWrap'>
-                    <div id='listTopOne'>
+                <section id={MainStyles.listTop}>
+                  <div id={MainStyles.listTopWrap}>
+                    <div id={MainStyles.listTopOne}>
                       <div>Dev</div>
                       <div>목록</div>
                     </div>
-                    <div id='listTopTwo'>
+                    <div id={MainStyles.listTopTwo}>
                       <div>글 제목</div>
                     </div>
                   </div>
@@ -121,7 +137,10 @@ function Main() {
                     .slice(indexOfFirstRecord, indexOfLastRecord)
                     .map((topListData) => {
                       return (
-                        <div key={topListData.id} className='listTopData'>
+                        <div
+                          key={topListData.id}
+                          className={MainStyles.listTopData}
+                        >
                           {topListData.listTopDataTitle}
                         </div>
                       );
@@ -139,14 +158,17 @@ function Main() {
               </article>
             </div>
             <article>
-              <section id='mainText'>
+              {/* <section id={MainStyles.mainText}>
                 {MAIN_TEXT_DATA[0].items.map((mainTextData) => {
                   return (
-                    <div key={mainTextData.id} className='mainTextData'>
+                    <div
+                      key={mainTextData.id}
+                      className={MainStyles.mainTextData}
+                    >
                       <img
                         src={mainTextData.mainTextDataImg}
                         alt='mainTextDataImg'
-                        className='mainTextDataImg'
+                        className={MainStyles.mainTextDataImg}
                       />
                       <div>{mainTextData.mainTextDataTitle}</div>
                     </div>
@@ -161,7 +183,7 @@ function Main() {
                   nextPageText='›' // "다음"을 나타낼 텍스트 (next, >, ...)
                   onChange={handleTextChange} // 페이지가 바뀔 때 핸들링해줄 함수
                 />
-              </section>
+              </section> */}
             </article>
           </div>
         </div>

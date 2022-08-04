@@ -8,14 +8,29 @@ export default function Post() {
   });
 
   const handlePostValue = (event: any) => {
-    event.preventDefault();
     const { name, value } = event.target;
     setPostValues({ ...postValues, [name]: value });
   };
 
+  const addPost = (event: any) => {
+    event.preventDefault();
+    fetch('http://localhost:3000/Post/Post', {
+      method: 'POST',
+      body: JSON.stringify({
+        content: postValues,
+      }),
+    })
+      .then((response) => response.json())
+      .then((results) => {
+        if (results.message === 'SUCCESS') {
+          alert('저장 완료 되었습니다.');
+        }
+      });
+  };
+
   return (
     <article id={ArticleStyles.post}>
-      <form id={ArticleStyles.postForm} onSubmit={handlePostValue}>
+      <form id={ArticleStyles.postForm} onSubmit={addPost}>
         <h1 id={ArticleStyles.postFormTitle}>게시글 작성</h1>
         <div id={ArticleStyles.postTitleWrap}>
           <label htmlFor='postTitle' id={ArticleStyles.postTitleLable}>

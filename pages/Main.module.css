@@ -246,6 +246,15 @@
   font-weight: bold;
 }
 
+#listTopOneRight {
+  display: flex;
+  gap: 15px;
+}
+
+#listTopOneRight:hover {
+  cursor: pointer;
+}
+
 #listTopTwo {
   padding-bottom: 10px;
   display: flex;

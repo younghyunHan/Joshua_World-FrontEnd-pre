@@ -127,7 +127,12 @@ function Main() {
                   <div id={MainStyles.listTopWrap}>
                     <div id={MainStyles.listTopOne}>
                       <div>Dev</div>
-                      <div>목록</div>
+                      <div id={MainStyles.listTopOneRight}>
+                        <Link href='/Post/Post'>
+                          <div>글쓰기</div>
+                        </Link>
+                        <div>목록</div>
+                      </div>
                     </div>
                     <div id={MainStyles.listTopTwo}>
                       <div>글 제목</div>

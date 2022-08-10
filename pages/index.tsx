@@ -13,6 +13,7 @@ function Main() {
   const [page, setPage] = useState(1);
   const [indexOfLastRecord, setIndexOfLastRecord] = useState(5);
   const [indexOfFirstRecord, setIndexOfFirstRecord] = useState(0);
+  const [topListData, setTopListData] = useState([]);
 
   const handlePageChange = (page: number) => {
     setPage(page);
@@ -35,6 +36,18 @@ function Main() {
   // console.log(page);
   // console.log(indexOfLastRecord);
   // console.log(indexOfFirstRecord);
+
+  useEffect(() => {
+    fetch('http://localhost:3000/list', {
+      method: 'GET',
+    })
+      .then((response) => response.json())
+      .then((results) => {
+        setTopListData(results);
+      });
+  }, []);
+
+  console.log(topListData);
 
   return (
     <div id={MainStyles.main}>
@@ -138,7 +151,19 @@ function Main() {
                       <div>글 제목</div>
                     </div>
                   </div>
-                  {TOP_LIST_DATA[0].items
+                  {topListData
+                    .slice(indexOfFirstRecord, indexOfLastRecord)
+                    .map((data) => {
+                      return (
+                        <div
+                          key={data['id']}
+                          className={MainStyles.listTopData}
+                        >
+                          {data['content']}
+                        </div>
+                      );
+                    })}
+                  {/* {topListData[0].items
                     .slice(indexOfFirstRecord, indexOfLastRecord)
                     .map((topListData) => {
                       return (
@@ -149,11 +174,11 @@ function Main() {
                           {topListData.listTopDataTitle}
                         </div>
                       );
-                    })}
+                    })} */}
                   <Pagination
                     activePage={page} // 현재 페이지
                     itemsCountPerPage={5} // 한 페이지당 보여줄 리스트 아이템의 개수
-                    totalItemsCount={TOP_LIST_DATA[0].count} // 총 아이템의 개수
+                    totalItemsCount={topListData.length} // 총 아이템의 개수
                     pageRangeDisplayed={5} //  Paginator 내에서 보여줄 페이지의 범위
                     prevPageText='‹' // "이전"을 나타낼 텍스트 (prev, <, ...)
                     nextPageText='›' // "다음"을 나타낼 텍스트 (next, >, ...)

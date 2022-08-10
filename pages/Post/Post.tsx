@@ -14,8 +14,11 @@ export default function Post() {
 
   const addPost = (event: any) => {
     event.preventDefault();
-    fetch('http://localhost:3000/Post/Post', {
+    fetch('http://localhost:3000/post', {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({
         content: postValues,
       }),
@@ -27,6 +30,8 @@ export default function Post() {
         }
       });
   };
+
+  console.log(postValues);
 
   return (
     <article id={ArticleStyles.post}>

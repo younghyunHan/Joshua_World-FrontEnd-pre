@@ -5,7 +5,7 @@ import React from 'react';
 
 export default function SignIn() {
   const [loginValues, setLoginValues] = useState({
-    id: '',
+    name: '',
     passWord: '',
   });
 
@@ -14,13 +14,13 @@ export default function SignIn() {
     setLoginValues({ ...loginValues, [name]: value });
   };
 
-  const { id, passWord } = loginValues;
+  const { name, passWord } = loginValues;
 
   const signUp = () => {
     fetch('http://localhost:3000/SignUp', {
       method: 'POST',
       body: JSON.stringify({
-        id: id,
+        id: name,
         passWord: passWord,
       }),
     })
@@ -38,7 +38,7 @@ export default function SignIn() {
     fetch('http://localhost:3000/SignIn', {
       method: 'POST',
       body: JSON.stringify({
-        email: id,
+        email: name,
         password: passWord,
       }),
     })
@@ -62,7 +62,7 @@ export default function SignIn() {
         <input
           id={SignInStyles.userId}
           type='text'
-          name='id'
+          name='name'
           placeholder='전화번호, 사용자 이름 또는 이메일'
           onChange={handleInputValue}
         />

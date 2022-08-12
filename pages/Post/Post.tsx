@@ -25,6 +25,7 @@ export default function Post() {
     })
       .then((response) => response.json())
       .then((results) => {
+        console.log(results);
         if (results.message === 'SUCCESS') {
           alert('저장 완료 되었습니다.');
         }

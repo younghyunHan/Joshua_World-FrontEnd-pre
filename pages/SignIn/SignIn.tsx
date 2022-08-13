@@ -16,29 +16,37 @@ export default function SignIn() {
 
   const { name, passWord } = loginValues;
 
-  const signUp = () => {
-    fetch('http://localhost:3000/SignUp', {
+  console.log(loginValues);
+
+  const signUp = (event: any) => {
+    event.preventDefault();
+    fetch('http://localhost:3000/signUp', {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({
-        id: name,
+        name: name,
         passWord: passWord,
       }),
     })
       .then((response) => response.json())
       .then((result) => {
-        if (result.token) {
+        if (result.message === 'SUCCESS') {
           alert('회원가입이 완료되었습니다.');
-        } else if (result.message === 'INVALID_USER') {
-          alert('ID와 PW를 확인해주세요.');
         }
       });
   };
 
-  const goToMain = () => {
-    fetch('http://localhost:3000/SignIn', {
+  const signIn = (event: any) => {
+    event.preventDefault();
+    fetch('http://localhost:3000/signIn', {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({
-        email: name,
+        name: name,
         password: passWord,
       }),
     })
@@ -73,10 +81,10 @@ export default function SignIn() {
           placeholder='비밀번호'
           onChange={handleInputValue}
         />
-        <button type='button' id={SignInStyles.signInBtn} onChange={goToMain}>
+        <button type='button' id={SignInStyles.signInBtn} onClick={signIn}>
           로그인
         </button>
-        <button type='button' id={SignInStyles.signUpBtn} onChange={signUp}>
+        <button type='button' id={SignInStyles.signUpBtn} onClick={signUp}>
           회원가입
         </button>
       </form>

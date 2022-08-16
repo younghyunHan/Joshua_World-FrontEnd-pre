@@ -24,7 +24,8 @@
 }
 
 #userId,
-#userPassword {
+#userPassword,
+#userName {
   width: 100%;
   height: 40px;
   padding: 10px;

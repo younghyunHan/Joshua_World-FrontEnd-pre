@@ -61,8 +61,6 @@ export default function SignIn() {
           router.push('/');
         } else if (result.message === 'INVALID_USER') {
           alert('ID와 PW를 확인해주세요.');
-        } else if (result.message === 'SUCCESS') {
-          alert('로그인 완료');
         }
       });
   };

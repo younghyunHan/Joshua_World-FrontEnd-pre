@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useState } from 'react';
 import ArticleStyles from './Post.module.css';
 
@@ -7,6 +8,8 @@ export default function Post() {
     postContent: '',
   });
 
+  const access_token = localStorage.getItem('token');
+
   const handlePostValue = (event: any) => {
     const { name, value } = event.target;
     setPostValues({ ...postValues, [name]: value });
@@ -14,19 +17,21 @@ export default function Post() {
 
   const addPost = (event: any) => {
     event.preventDefault();
-    fetch('http://localhost:3000/post', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        content: postValues,
-      }),
-    })
-      .then((response) => response.json())
-      .then((results) => {
-        console.log(results);
-        if (results.message === 'SUCCESS') {
+    axios
+      .post(
+        'http://localhost:3000/post',
+        {
+          content: postValues,
+        },
+        {
+          headers: {
+            // 'Content-Type': 'application/json',
+            Authorization: `${access_token}`,
+          },
+        }
+      )
+      .then(function (response: any) {
+        if (response.message === 'SUCCESS') {
           alert('저장 완료 되었습니다.');
         }
       });

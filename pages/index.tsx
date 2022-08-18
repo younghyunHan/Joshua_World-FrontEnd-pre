@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Pagination from 'react-js-pagination';
+import axios from 'axios';
+
 import Link from 'next/link';
 import TOP_MENU_LIST from './TopMenuData';
 import NAV_LIST from './NavData';
@@ -15,6 +17,8 @@ function Main() {
   const [indexOfFirstRecord, setIndexOfFirstRecord] = useState(0);
   const [topListData, setTopListData] = useState([]);
 
+  const access_token = localStorage.getItem('token');
+
   const handlePageChange = (page: number) => {
     setPage(page);
     setIndexOfLastRecord(page * 5); // 현재 페이지 * 레코드당 페이지;
@@ -24,26 +28,15 @@ function Main() {
     setIndexOfFirstRecord(indexOfLastRecord - 5); // 마지막 레코드 - 레코드당 페이지;
   }, [indexOfLastRecord]);
 
-  // const handleTextChange = (page: number) => {
-  //   setPage(page);
-  //   setIndexOfLastRecord(page * 10); // 현재 페이지 * 레코드당 페이지;
-  // };
-
-  // useEffect(() => {
-  //   setIndexOfFirstRecord(indexOfLastRecord - 10); // 마지막 레코드 - 레코드당 페이지;
-  // }, [indexOfLastRecord]);
-
-  // console.log(page);
-  // console.log(indexOfLastRecord);
-  // console.log(indexOfFirstRecord);
-
   useEffect(() => {
-    fetch('http://localhost:3000/list', {
-      method: 'GET',
-    })
-      .then((response) => response.json())
-      .then((results) => {
-        setTopListData(results);
+    axios
+      .get('http://localhost:3000/list', {
+        headers: {
+          Authorization: `${access_token}`,
+        },
+      })
+      .then(function (response) {
+        setTopListData(response.data);
       });
   }, []);
 
@@ -163,18 +156,6 @@ function Main() {
                         </div>
                       );
                     })}
-                  {/* {topListData[0].items
-                    .slice(indexOfFirstRecord, indexOfLastRecord)
-                    .map((topListData) => {
-                      return (
-                        <div
-                          key={topListData.id}
-                          className={MainStyles.listTopData}
-                        >
-                          {topListData.listTopDataTitle}
-                        </div>
-                      );
-                    })} */}
                   <Pagination
                     activePage={page} // 현재 페이지
                     itemsCountPerPage={5} // 한 페이지당 보여줄 리스트 아이템의 개수
@@ -187,34 +168,6 @@ function Main() {
                 </section>
               </article>
             </div>
-            <article>
-              {/* <section id={MainStyles.mainText}>
-                {MAIN_TEXT_DATA[0].items.map((mainTextData) => {
-                  return (
-                    <div
-                      key={mainTextData.id}
-                      className={MainStyles.mainTextData}
-                    >
-                      <img
-                        src={mainTextData.mainTextDataImg}
-                        alt='mainTextDataImg'
-                        className={MainStyles.mainTextDataImg}
-                      />
-                      <div>{mainTextData.mainTextDataTitle}</div>
-                    </div>
-                  );
-                })}
-                <Pagination
-                  activePage={page} // 현재 페이지
-                  itemsCountPerPage={10} // 한 페이지당 보여줄 리스트 아이템의 개수
-                  totalItemsCount={TOP_LIST_DATA[0].count} // 총 아이템의 개수
-                  pageRangeDisplayed={5} //  Paginator 내에서 보여줄 페이지의 범위
-                  prevPageText='‹' // "이전"을 나타낼 텍스트 (prev, <, ...)
-                  nextPageText='›' // "다음"을 나타낼 텍스트 (next, >, ...)
-                  onChange={handleTextChange} // 페이지가 바뀔 때 핸들링해줄 함수
-                />
-              </section> */}
-            </article>
           </div>
         </div>
       </div>

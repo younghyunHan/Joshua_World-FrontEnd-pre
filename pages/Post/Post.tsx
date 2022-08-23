@@ -25,13 +25,13 @@ export default function Post() {
         },
         {
           headers: {
-            // 'Content-Type': 'application/json',
             Authorization: `${access_token}`,
           },
         }
       )
-      .then(function (response: any) {
-        if (response.message === 'SUCCESS') {
+      .then((response: any) => {
+        console.log(response);
+        if (response.data.message === 'SUCCESS') {
           alert('저장 완료 되었습니다.');
         }
       });

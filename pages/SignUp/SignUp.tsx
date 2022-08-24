@@ -122,6 +122,7 @@ export default function SignUp() {
         <div id={SignUpStyles.signUpFormTop}>
           <h1 id={SignUpStyles.signUpFormName}>Blog</h1>
           <div id={SignUpStyles.signUpFormTopContent}>
+            <div id={SignUpStyles.signUpTitle}>회원가입</div>
             <input
               id={SignUpStyles.userName}
               type='text'

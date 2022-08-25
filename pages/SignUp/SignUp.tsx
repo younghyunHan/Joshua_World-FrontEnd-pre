@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState, useMemo } from 'react';
 import SignUpStyles from './SignUp.module.css';
 import React from 'react';
 import { useRouter } from 'next/router';
@@ -104,6 +104,7 @@ export default function SignUp() {
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const passwordConfirmCurrent = e.target.value;
       setPasswordConfirm(passwordConfirmCurrent);
+      console.log(password);
 
       if (password === passwordConfirmCurrent) {
         setPasswordConfirmMessage('비밀번호를 똑같이 입력했어요 : )');

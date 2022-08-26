@@ -74,3 +74,7 @@ ul.pagination li a:hover,
 ul.pagination li a.active {
   color: blue;
 }
+
+.ql-container {
+  height: 350px !important;
+}

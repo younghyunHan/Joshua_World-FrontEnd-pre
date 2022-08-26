@@ -1,0 +1,32 @@
+#reactQuillWrap {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+#postTitle,
+#postDate,
+#postCategory {
+  width: 850px;
+  height: 40px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #b8bfc1;
+}
+
+#postSubmit {
+  width: 80px;
+  height: 30px;
+  color: white;
+  background-color: #c5e1fc;
+  border: 1px solid #c5e1fc;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+#postSubmit:hover {
+  background-color: blue;
+}

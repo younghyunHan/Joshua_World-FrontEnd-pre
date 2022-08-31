@@ -163,6 +163,12 @@
   border-radius: 10px;
 }
 
+#navDataTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
 #category {
   font-size: 15px;
   cursor: pointer;
@@ -171,7 +177,8 @@
 
 #category:after {
   display: block;
-  width: 50px;
+  width: 55px;
+  padding: 1px;
   content: '';
   border-bottom: 1px solid #44a0dd;
   transform: scaleX(0);

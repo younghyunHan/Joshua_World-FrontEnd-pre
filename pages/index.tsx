@@ -17,6 +17,7 @@ function Main() {
   const [indexOfFirstRecord, setIndexOfFirstRecord] = useState(0);
   const [topListData, setTopListData] = useState([]);
   const [navList, setNavList] = useState([]);
+  const [selectCategoryData, setSelectCategoryData] = useState('');
 
   const access_token = localStorage.getItem('token');
 
@@ -52,6 +53,46 @@ function Main() {
         setNavList(response.data);
       });
   }, []);
+
+  const selectCategory = (event: any) => {
+    return setSelectCategoryData(event.target.textContent);
+  };
+
+  useEffect(() => {
+    // axios
+    //   .get(
+    //     'http://localhost:3000/selectCategory',
+    //     {
+    //       headers: {
+    //         Authorization: `${access_token}`,
+    //       },
+    //     },
+    //     params: {
+    //       category: selectCategoryData,
+    //     }
+    //   )
+    //   .then((response: any) => {
+    //     console.log(response);
+    //     if (response.data.message === 'SUCCESS') {
+    //       alert('저장 완료 되었습니다.');
+    //     }
+    //   });
+    axios({
+      method: 'GET',
+      url: 'http://localhost:3000/selectCategory',
+      data: {
+        category: selectCategoryData,
+      },
+    })
+      .then(function (response) {
+        // handle success
+        console.log(response);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      });
+  }, [selectCategoryData]);
 
   return (
     <div id={MainStyles.main}>
@@ -119,7 +160,9 @@ function Main() {
                           alt='menuArrow'
                           src='/images/arrow.png'
                         />
-                        <span>{navData['category']}</span>
+                        <span onClick={selectCategory}>
+                          {navData['category']}
+                        </span>
                       </li>
                     );
                   })}

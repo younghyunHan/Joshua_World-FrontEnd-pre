@@ -10,7 +10,8 @@ import EditorStyles from './Editor.module.css';
 // import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 
 export default function Editor() {
-  const [navData, setNavData] = useState([]);
+  const [navList, setNavList] = useState([]);
+  const [selectNavData, setSelectNavData] = useState([]);
   const access_token = localStorage.getItem('token');
 
   const addPost = (event: any) => {
@@ -56,18 +57,35 @@ export default function Editor() {
         },
       })
       .then(function (response) {
-        setNavData(response.data);
+        setNavList(response.data);
       });
   }, []);
 
+  const selectOption = (event: any) => {
+    setSelectNavData(event.target.value);
+    // console.log(event.target.value);
+  };
+
+  console.log(selectNavData);
+
   return (
     <>
-      <form id={EditorStyles.reactQuillWrap}>
-        <input placeholder='제목' id={EditorStyles.postTitle} />
-        <input placeholder='카테고리' id={EditorStyles.postCategory} />
-        <select>
-          <option></option>
-        </select>
+      <form id={EditorStyles.EditorWrap}>
+        <div id={EditorStyles.EditorWrapTop}>
+          <input placeholder='제목' id={EditorStyles.postTitle} />
+          <select onChange={selectOption} id={EditorStyles.selectOption}>
+            {navList.map((navList) => {
+              return (
+                <option
+                  key={navList['id']}
+                  className={EditorStyles.postCategory}
+                >
+                  {navList['category']}
+                </option>
+              );
+            })}
+          </select>
+        </div>
         {/* <CKEditor
           editor={ClassicEditor}
           config={{

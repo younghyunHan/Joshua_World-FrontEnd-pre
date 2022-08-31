@@ -1,4 +1,4 @@
-#reactQuillWrap {
+#EditorWrap {
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -7,9 +7,20 @@
   gap: 10px;
 }
 
-#postTitle,
-#postCategory {
+#EditorWrapTop {
   width: 850px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#selectOption {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #b8bfc1;
+}
+
+#postTitle {
+  width: 680px;
   height: 40px;
   padding: 10px;
   border-radius: 5px;

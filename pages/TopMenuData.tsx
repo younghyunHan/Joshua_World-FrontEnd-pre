@@ -12,7 +12,7 @@ const TOP_MENU_LIST = [
   {
     id: 3,
     topMenu: '로그인',
-    movePath: '/SignIn/SignIn',
+    movePath: '/SignIn',
   },
 ];
 

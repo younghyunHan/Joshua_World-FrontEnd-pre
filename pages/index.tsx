@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import Link from 'next/link';
 import TOP_MENU_LIST from './TopMenuData';
-import NAV_LIST from './NavData';
+// import NAV_LIST from './NavData';
 import TOP_LIST_DATA from './TopListData';
 import MAIN_TEXT_DATA from './MainTextData';
 
@@ -16,6 +16,7 @@ function Main() {
   const [indexOfLastRecord, setIndexOfLastRecord] = useState(5);
   const [indexOfFirstRecord, setIndexOfFirstRecord] = useState(0);
   const [topListData, setTopListData] = useState([]);
+  const [navList, setNavList] = useState([]);
 
   const access_token = localStorage.getItem('token');
 
@@ -40,7 +41,17 @@ function Main() {
       });
   }, []);
 
-  console.log(topListData);
+  useEffect(() => {
+    axios
+      .get('http://localhost:3000/category', {
+        headers: {
+          Authorization: `${access_token}`,
+        },
+      })
+      .then(function (response) {
+        setNavList(response.data);
+      });
+  }, []);
 
   return (
     <div id={MainStyles.main}>
@@ -97,10 +108,10 @@ function Main() {
               </div>
               {categoryVisible && (
                 <ul>
-                  {NAV_LIST.map((navData) => {
+                  {navList.map((navData) => {
                     return (
                       <li
-                        key={navData.id}
+                        key={navData['id']}
                         className={MainStyles.navDataContent}
                       >
                         <img
@@ -108,7 +119,7 @@ function Main() {
                           alt='menuArrow'
                           src='/images/arrow.png'
                         />
-                        <span>{navData.navMenu}</span>
+                        <span>{navData['category']}</span>
                       </li>
                     );
                   })}
@@ -134,7 +145,7 @@ function Main() {
                     <div id={MainStyles.listTopOne}>
                       <div>Dev</div>
                       <div id={MainStyles.listTopOneRight}>
-                        <Link href='/Post/Post'>
+                        <Link href='/Editor/Editor'>
                           <div>글쓰기</div>
                         </Link>
                         <div>목록</div>
@@ -152,7 +163,7 @@ function Main() {
                           key={data['id']}
                           className={MainStyles.listTopData}
                         >
-                          {data['content']}
+                          {data['title']}
                         </div>
                       );
                     })}

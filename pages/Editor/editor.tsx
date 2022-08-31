@@ -10,7 +10,8 @@ import EditorStyles from './Editor.module.css';
 // import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 
 export default function Editor() {
-  // const access_token = localStorage.getItem('token');
+  const [navData, setNavData] = useState([]);
+  const access_token = localStorage.getItem('token');
 
   const addPost = (event: any) => {
     event.preventDefault();
@@ -47,11 +48,26 @@ export default function Editor() {
     //   });
   };
 
+  useEffect(() => {
+    axios
+      .get('http://localhost:3000/category', {
+        headers: {
+          Authorization: `${access_token}`,
+        },
+      })
+      .then(function (response) {
+        setNavData(response.data);
+      });
+  }, []);
+
   return (
     <>
       <form id={EditorStyles.reactQuillWrap}>
         <input placeholder='제목' id={EditorStyles.postTitle} />
         <input placeholder='카테고리' id={EditorStyles.postCategory} />
+        <select>
+          <option></option>
+        </select>
         {/* <CKEditor
           editor={ClassicEditor}
           config={{

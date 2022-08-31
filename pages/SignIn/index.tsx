@@ -4,7 +4,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
-export default function SignIn() {
+export default function Index() {
   //이름, 이메일, 비밀번호, 비밀번호 확인
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');

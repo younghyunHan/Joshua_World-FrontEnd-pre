@@ -37,8 +37,6 @@ export default function Post() {
       });
   };
 
-  console.log(postValues);
-
   return (
     <article id={ArticleStyles.post}>
       <form id={ArticleStyles.postForm} onSubmit={addPost}>

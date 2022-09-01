@@ -179,7 +179,7 @@ export default function Index() {
           >
             로그인
           </button>
-          <Link href='/SignUp/SignUp'>
+          <Link href='/SignUp'>
             <button type='button' id={SignInStyles.goToSignUp}>
               회원가입
             </button>

@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
 
-import TopListData from './TopListData/TopListData';
-import CategoryData from './CategoryData/CategoryData';
 import TOP_MENU_LIST from './TopMenuData';
+import AllData from './AllData/AllData';
+import CategoryData from './CategoryData/CategoryData';
+import MainContent from './MainContent/MainContent';
 import MainStyles from './Main.module.css';
 
 function Main() {
@@ -28,11 +29,6 @@ function Main() {
 
   const selectCategory = (event: any) => {
     return setSelectCategoryData(event.target.textContent);
-  };
-
-  const countListNumber = (event: any) => {
-    console.log(event.target.value);
-    // setCountTopList(event.target.value);
   };
 
   return (
@@ -129,11 +125,12 @@ function Main() {
               {selectCategoryData ? (
                 <CategoryData selectCategoryData={selectCategoryData} />
               ) : (
-                <TopListData />
+                <AllData />
               )}
             </div>
           </div>
         </div>
+        <MainContent selectCategoryData={selectCategoryData} />
       </div>
     </div>
   );

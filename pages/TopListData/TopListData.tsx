@@ -6,7 +6,6 @@ import Link from 'next/link';
 import TopListDataStyles from './TopListData.module.css';
 
 function TopListData() {
-  const [topListVisible, setTopListVisible] = useState(true);
   const [page, setPage] = useState(1);
   const [indexOfLastRecord, setIndexOfLastRecord] = useState(5);
   const [indexOfFirstRecord, setIndexOfFirstRecord] = useState(0);
@@ -50,17 +49,11 @@ function TopListData() {
               <Link href='/Editor/Editor'>
                 <div>글쓰기</div>
               </Link>
-              <div
-                onClick={() => {
-                  setTopListVisible(!topListVisible);
-                }}
-              >
-                {topListVisible ? '목록 닫기' : '목록 열기'}
-              </div>
             </div>
           </div>
           <div id={TopListDataStyles.listTopTwo}>
             <div>글 제목</div>
+
             <div>작성일</div>
           </div>
         </div>

@@ -9,7 +9,6 @@ import MainStyles from './Main.module.css';
 
 function Main() {
   const [categoryVisible, setCategoryVisible] = useState(true);
-  const [topListVisible, setTopListVisible] = useState(true);
   const [navList, setNavList] = useState([]);
   const [selectCategoryData, setSelectCategoryData] = useState('');
 
@@ -127,12 +126,11 @@ function Main() {
         <div id={MainStyles.mainContent}>
           <div id={MainStyles.listWrap}>
             <div id={MainStyles.list}>
-              {topListVisible &&
-                (selectCategoryData ? (
-                  <CategoryData selectCategoryData={selectCategoryData} />
-                ) : (
-                  <TopListData />
-                ))}
+              {selectCategoryData ? (
+                <CategoryData selectCategoryData={selectCategoryData} />
+              ) : (
+                <TopListData />
+              )}
             </div>
           </div>
         </div>

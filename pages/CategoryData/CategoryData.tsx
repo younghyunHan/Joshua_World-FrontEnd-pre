@@ -5,13 +5,11 @@ import Link from 'next/link';
 
 import CategoryDataStyles from './CategoryData.module.css';
 
-function Main({ selectCategoryData }) {
-  const [topListVisible, setTopListVisible] = useState(true);
+function CategoryData({ selectCategoryData }) {
   const [page, setPage] = useState(1);
   const [indexOfLastRecord, setIndexOfLastRecord] = useState(5);
   const [indexOfFirstRecord, setIndexOfFirstRecord] = useState(0);
   const [categoryData, setCatagoryData] = useState([]);
-  const [listNumber, setListNumber] = useState(5);
 
   const handlePageChange = (page: number) => {
     setPage(page);
@@ -47,20 +45,13 @@ function Main({ selectCategoryData }) {
         <div id={CategoryDataStyles.listTopWrap}>
           <div id={CategoryDataStyles.listTopOne}>
             <div id={CategoryDataStyles.listTopOneLeft}>
-              <div>Dev</div>
+              <div>{selectCategoryData}</div>
               <span>총 {categoryData.length}개 글</span>
             </div>
             <div id={CategoryDataStyles.listTopOneRight}>
               <Link href='/Editor/Editor'>
                 <div>글쓰기</div>
               </Link>
-              <div
-                onClick={() => {
-                  setTopListVisible(!topListVisible);
-                }}
-              >
-                {topListVisible ? '목록 닫기' : '목록 열기'}
-              </div>
             </div>
           </div>
           <div id={CategoryDataStyles.listTopTwo}>
@@ -91,4 +82,4 @@ function Main({ selectCategoryData }) {
   );
 }
 
-export default Main;
+export default CategoryData;

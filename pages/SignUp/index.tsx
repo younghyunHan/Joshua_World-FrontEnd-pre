@@ -3,7 +3,7 @@ import SignUpStyles from './SignUp.module.css';
 import React from 'react';
 import { useRouter } from 'next/router';
 
-export default function SignUp() {
+export default function Index() {
   //이름, 이메일, 비밀번호, 비밀번호 확인
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');

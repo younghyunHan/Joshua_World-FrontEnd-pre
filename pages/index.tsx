@@ -1,46 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import Pagination from 'react-js-pagination';
 import axios from 'axios';
-
 import Link from 'next/link';
-import TOP_MENU_LIST from './TopMenuData';
-// import NAV_LIST from './NavData';
-import TOP_LIST_DATA from './TopListData';
-import MAIN_TEXT_DATA from './MainTextData';
 
+import TopListData from './TopListData/TopListData';
+import CategoryData from './CategoryData/CategoryData';
+import TOP_MENU_LIST from './TopMenuData';
 import MainStyles from './Main.module.css';
 
 function Main() {
   const [categoryVisible, setCategoryVisible] = useState(true);
-  const [page, setPage] = useState(1);
-  const [indexOfLastRecord, setIndexOfLastRecord] = useState(5);
-  const [indexOfFirstRecord, setIndexOfFirstRecord] = useState(0);
-  const [topListData, setTopListData] = useState([]);
   const [navList, setNavList] = useState([]);
   const [selectCategoryData, setSelectCategoryData] = useState('');
 
   const access_token = localStorage.getItem('token');
-
-  const handlePageChange = (page: number) => {
-    setPage(page);
-    setIndexOfLastRecord(page * 5); // 현재 페이지 * 레코드당 페이지;
-  };
-
-  useEffect(() => {
-    setIndexOfFirstRecord(indexOfLastRecord - 5); // 마지막 레코드 - 레코드당 페이지;
-  }, [indexOfLastRecord]);
-
-  useEffect(() => {
-    axios
-      .get('http://localhost:3000/list', {
-        headers: {
-          Authorization: `${access_token}`,
-        },
-      })
-      .then(function (response) {
-        setTopListData(response.data);
-      });
-  }, []);
 
   useEffect(() => {
     axios
@@ -57,42 +29,6 @@ function Main() {
   const selectCategory = (event: any) => {
     return setSelectCategoryData(event.target.textContent);
   };
-
-  useEffect(() => {
-    // axios
-    //   .get(
-    //     'http://localhost:3000/selectCategory',
-    //     {
-    //       headers: {
-    //         Authorization: `${access_token}`,
-    //       },
-    //     },
-    //     params: {
-    //       category: selectCategoryData,
-    //     }
-    //   )
-    //   .then((response: any) => {
-    //     console.log(response);
-    //     if (response.data.message === 'SUCCESS') {
-    //       alert('저장 완료 되었습니다.');
-    //     }
-    //   });
-    axios({
-      method: 'GET',
-      url: 'http://localhost:3000/selectCategory',
-      data: {
-        category: selectCategoryData,
-      },
-    })
-      .then(function (response) {
-        // handle success
-        console.log(response);
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      });
-  }, [selectCategoryData]);
 
   return (
     <div id={MainStyles.main}>
@@ -198,27 +134,11 @@ function Main() {
                       <div>글 제목</div>
                     </div>
                   </div>
-                  {topListData
-                    .slice(indexOfFirstRecord, indexOfLastRecord)
-                    .map((data) => {
-                      return (
-                        <div
-                          key={data['id']}
-                          className={MainStyles.listTopData}
-                        >
-                          {data['title']}
-                        </div>
-                      );
-                    })}
-                  <Pagination
-                    activePage={page} // 현재 페이지
-                    itemsCountPerPage={5} // 한 페이지당 보여줄 리스트 아이템의 개수
-                    totalItemsCount={topListData.length} // 총 아이템의 개수
-                    pageRangeDisplayed={5} //  Paginator 내에서 보여줄 페이지의 범위
-                    prevPageText='‹' // "이전"을 나타낼 텍스트 (prev, <, ...)
-                    nextPageText='›' // "다음"을 나타낼 텍스트 (next, >, ...)
-                    onChange={handlePageChange} // 페이지가 바뀔 때 핸들링해줄 함수
-                  />
+                  {selectCategoryData ? (
+                    <CategoryData selectCategoryData={selectCategoryData} />
+                  ) : (
+                    <TopListData />
+                  )}
                 </section>
               </article>
             </div>

@@ -9,11 +9,6 @@ const TOP_MENU_LIST = [
     topMenu: '이웃 블로그',
     movePath: '/',
   },
-  {
-    id: 3,
-    topMenu: '로그인',
-    movePath: '/SignIn',
-  },
 ];
 
 export default TOP_MENU_LIST;

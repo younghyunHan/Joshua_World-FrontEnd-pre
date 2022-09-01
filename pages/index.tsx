@@ -9,6 +9,7 @@ import MainStyles from './Main.module.css';
 
 function Main() {
   const [categoryVisible, setCategoryVisible] = useState(true);
+  const [topListVisible, setTopListVisible] = useState(true);
   const [navList, setNavList] = useState([]);
   const [selectCategoryData, setSelectCategoryData] = useState('');
 
@@ -30,6 +31,11 @@ function Main() {
     return setSelectCategoryData(event.target.textContent);
   };
 
+  const countListNumber = (event: any) => {
+    console.log(event.target.value);
+    // setCountTopList(event.target.value);
+  };
+
   return (
     <div id={MainStyles.main}>
       <div id={MainStyles.mainWrap}>
@@ -45,12 +51,15 @@ function Main() {
                     >
                       {data.topMenu}
                     </Link>
-                    {!(index === TOP_MENU_LIST.length - 1) && (
+                    {!(index === TOP_MENU_LIST.length) && (
                       <div className={MainStyles.txtBar} />
                     )}
                   </li>
                 );
               })}
+              <Link href='/SignIn' id={MainStyles.goToSignIn}>
+                {access_token ? '로그아웃' : '로그인'}
+              </Link>
             </ul>
           </div>
           <div id={MainStyles.headerImgBox}>
@@ -118,29 +127,12 @@ function Main() {
         <div id={MainStyles.mainContent}>
           <div id={MainStyles.listWrap}>
             <div id={MainStyles.list}>
-              <article>
-                <section id={MainStyles.listTop}>
-                  <div id={MainStyles.listTopWrap}>
-                    <div id={MainStyles.listTopOne}>
-                      <div>Dev</div>
-                      <div id={MainStyles.listTopOneRight}>
-                        <Link href='/Editor/Editor'>
-                          <div>글쓰기</div>
-                        </Link>
-                        <div>목록</div>
-                      </div>
-                    </div>
-                    <div id={MainStyles.listTopTwo}>
-                      <div>글 제목</div>
-                    </div>
-                  </div>
-                  {selectCategoryData ? (
-                    <CategoryData selectCategoryData={selectCategoryData} />
-                  ) : (
-                    <TopListData />
-                  )}
-                </section>
-              </article>
+              {topListVisible &&
+                (selectCategoryData ? (
+                  <CategoryData selectCategoryData={selectCategoryData} />
+                ) : (
+                  <TopListData />
+                ))}
             </div>
           </div>
         </div>

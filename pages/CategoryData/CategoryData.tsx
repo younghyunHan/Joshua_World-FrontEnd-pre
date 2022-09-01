@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import Pagination from 'react-js-pagination';
 import axios from 'axios';
+import Link from 'next/link';
 
 import CategoryDataStyles from './CategoryData.module.css';
 
 function Main({ selectCategoryData }) {
+  const [topListVisible, setTopListVisible] = useState(true);
   const [page, setPage] = useState(1);
   const [indexOfLastRecord, setIndexOfLastRecord] = useState(5);
   const [indexOfFirstRecord, setIndexOfFirstRecord] = useState(0);
   const [categoryData, setCatagoryData] = useState([]);
+  const [listNumber, setListNumber] = useState(5);
 
   const handlePageChange = (page: number) => {
     setPage(page);
@@ -39,26 +42,52 @@ function Main({ selectCategoryData }) {
   }, [selectCategoryData]);
 
   return (
-    <section>
-      {categoryData
-        .slice(indexOfFirstRecord, indexOfLastRecord)
-        .map((data, index) => {
-          return (
-            <div key={index} className={CategoryDataStyles.listTopData}>
-              {data['title']}
+    <article>
+      <section id={CategoryDataStyles.listTop}>
+        <div id={CategoryDataStyles.listTopWrap}>
+          <div id={CategoryDataStyles.listTopOne}>
+            <div id={CategoryDataStyles.listTopOneLeft}>
+              <div>Dev</div>
+              <span>총 {categoryData.length}개 글</span>
             </div>
-          );
-        })}
-      <Pagination
-        activePage={page} // 현재 페이지
-        itemsCountPerPage={5} // 한 페이지당 보여줄 리스트 아이템의 개수
-        totalItemsCount={categoryData.length} // 총 아이템의 개수
-        pageRangeDisplayed={5} //  Paginator 내에서 보여줄 페이지의 범위
-        prevPageText='‹' // "이전"을 나타낼 텍스트 (prev, <, ...)
-        nextPageText='›' // "다음"을 나타낼 텍스트 (next, >, ...)
-        onChange={handlePageChange} // 페이지가 바뀔 때 핸들링해줄 함수
-      />
-    </section>
+            <div id={CategoryDataStyles.listTopOneRight}>
+              <Link href='/Editor/Editor'>
+                <div>글쓰기</div>
+              </Link>
+              <div
+                onClick={() => {
+                  setTopListVisible(!topListVisible);
+                }}
+              >
+                {topListVisible ? '목록 닫기' : '목록 열기'}
+              </div>
+            </div>
+          </div>
+          <div id={CategoryDataStyles.listTopTwo}>
+            <div>글 제목</div>
+            <div>작성일</div>
+          </div>
+        </div>
+        {categoryData
+          .slice(indexOfFirstRecord, indexOfLastRecord)
+          .map((data, index) => {
+            return (
+              <div key={index} className={CategoryDataStyles.listTopData}>
+                {data['title']}
+              </div>
+            );
+          })}
+        <Pagination
+          activePage={page} // 현재 페이지
+          itemsCountPerPage={5} // 한 페이지당 보여줄 리스트 아이템의 개수
+          totalItemsCount={categoryData.length} // 총 아이템의 개수
+          pageRangeDisplayed={5} //  Paginator 내에서 보여줄 페이지의 범위
+          prevPageText='‹' // "이전"을 나타낼 텍스트 (prev, <, ...)
+          nextPageText='›' // "다음"을 나타낼 텍스트 (next, >, ...)
+          onChange={handlePageChange} // 페이지가 바뀔 때 핸들링해줄 함수
+        />
+      </section>
+    </article>
   );
 }
 

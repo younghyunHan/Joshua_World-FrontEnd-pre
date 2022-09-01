@@ -253,6 +253,7 @@
   font-weight: bold;
 }
 
+#listTopOneLeft,
 #listTopOneRight {
   display: flex;
   gap: 15px;

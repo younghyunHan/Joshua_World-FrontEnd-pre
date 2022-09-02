@@ -204,16 +204,22 @@
 }
 
 #searchBox {
+  width: 100%;
   display: flex;
   position: relative;
+  border: 1px solid #b8bfc1;
+  border-radius: 5px;
 }
 
 #search {
-  width: 100%;
+  width: 140px;
   height: 30px;
   padding: 10px;
-  border: 1px solid #b8bfc1;
-  border-radius: 5px;
+  border: 1px solid white;
+}
+
+#search:focus {
+  outline: none;
 }
 
 #searchIcon {

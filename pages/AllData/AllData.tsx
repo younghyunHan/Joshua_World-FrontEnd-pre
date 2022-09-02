@@ -5,11 +5,12 @@ import Link from 'next/link';
 
 import AllDataStyles from './AllData.module.css';
 
-function AllData() {
+function AllData({ searchData }) {
   const [page, setPage] = useState(1);
   const [indexOfLastRecord, setIndexOfLastRecord] = useState(5);
   const [indexOfFirstRecord, setIndexOfFirstRecord] = useState(0);
   const [allData, setAllData] = useState([]);
+  const [returnSearchdata, setReturnSearchData] = useState([]);
 
   const handlePageChange = (page: number) => {
     setPage(page);
@@ -36,6 +37,26 @@ function AllData() {
     }
   }, []);
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const access_token = localStorage.getItem('token');
+
+      axios
+        .get('http://localhost:3000/searchData', {
+          headers: {
+            Authorization: `${access_token}`,
+          },
+          params: {
+            searchData: searchData,
+          },
+        })
+        .then((response: any) => {
+          console.log(response);
+          setReturnSearchData(response.data);
+        });
+    }
+  }, [searchData]);
+
   return (
     <article>
       <section id={AllDataStyles.listTop}>
@@ -56,15 +77,25 @@ function AllData() {
             <div>작성일</div>
           </div>
         </div>
-        {allData
-          .slice(indexOfFirstRecord, indexOfLastRecord)
-          .map((data, index) => {
-            return (
-              <div key={data['id']} className={AllDataStyles.listTopData}>
-                {data['title']}
-              </div>
-            );
-          })}
+        {returnSearchdata.length > 0
+          ? returnSearchdata
+              .slice(indexOfFirstRecord, indexOfLastRecord)
+              .map((data, index) => {
+                return (
+                  <div key={data['id']} className={AllDataStyles.listTopData}>
+                    {data['title']}
+                  </div>
+                );
+              })
+          : allData
+              .slice(indexOfFirstRecord, indexOfLastRecord)
+              .map((data, index) => {
+                return (
+                  <div key={data['id']} className={AllDataStyles.listTopData}>
+                    {data['title']}
+                  </div>
+                );
+              })}
         <Pagination
           activePage={page} // 현재 페이지
           itemsCountPerPage={5} // 한 페이지당 보여줄 리스트 아이템의 개수

@@ -12,6 +12,7 @@ function Main() {
   const [categoryVisible, setCategoryVisible] = useState(true);
   const [navList, setNavList] = useState([]);
   const [selectCategoryData, setSelectCategoryData] = useState('');
+  const [searchData, setSearchData] = useState('');
 
   const access_token = localStorage.getItem('token');
 
@@ -29,6 +30,11 @@ function Main() {
 
   const selectCategory = (event: any) => {
     return setSelectCategoryData(event.target.textContent);
+  };
+
+  const searchUsersInput = (event: any) => {
+    let userInput = event.target.value;
+    setSearchData(userInput);
   };
 
   return (
@@ -111,7 +117,11 @@ function Main() {
             </div>
           </div>
           <div id={MainStyles.searchBox}>
-            <input placeholder='검색' id={MainStyles.search} />
+            <input
+              placeholder='검색'
+              id={MainStyles.search}
+              onChange={searchUsersInput}
+            />
             <img
               id={MainStyles.searchIcon}
               alt='searchIcon'
@@ -123,9 +133,12 @@ function Main() {
           <div id={MainStyles.listWrap}>
             <div id={MainStyles.list}>
               {selectCategoryData ? (
-                <CategoryData selectCategoryData={selectCategoryData} />
+                <CategoryData
+                  selectCategoryData={selectCategoryData}
+                  searchData={searchData}
+                />
               ) : (
-                <AllData />
+                <AllData searchData={searchData} />
               )}
             </div>
           </div>

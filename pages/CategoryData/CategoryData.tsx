@@ -5,11 +5,12 @@ import Link from 'next/link';
 
 import CategoryDataStyles from './CategoryData.module.css';
 
-function CategoryData({ selectCategoryData }) {
+function CategoryData({ selectCategoryData, searchData }) {
   const [page, setPage] = useState(1);
   const [indexOfLastRecord, setIndexOfLastRecord] = useState(5);
   const [indexOfFirstRecord, setIndexOfFirstRecord] = useState(0);
   const [categoryData, setCatagoryData] = useState([]);
+  const [returnSearchdata, setReturnSearchData] = useState([]);
 
   const handlePageChange = (page: number) => {
     setPage(page);
@@ -39,6 +40,26 @@ function CategoryData({ selectCategoryData }) {
     }
   }, [selectCategoryData]);
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const access_token = localStorage.getItem('token');
+
+      axios
+        .get('http://localhost:3000/searchData', {
+          headers: {
+            Authorization: `${access_token}`,
+          },
+          params: {
+            searchData: searchData,
+          },
+        })
+        .then((response: any) => {
+          console.log(response);
+          setReturnSearchData(response.data);
+        });
+    }
+  }, [searchData]);
+
   return (
     <article>
       <section id={CategoryDataStyles.listTop}>
@@ -59,15 +80,25 @@ function CategoryData({ selectCategoryData }) {
             <div>작성일</div>
           </div>
         </div>
-        {categoryData
-          .slice(indexOfFirstRecord, indexOfLastRecord)
-          .map((data, index) => {
-            return (
-              <div key={index} className={CategoryDataStyles.listTopData}>
-                {data['title']}
-              </div>
-            );
-          })}
+        {returnSearchdata.length > 0
+          ? returnSearchdata
+              .slice(indexOfFirstRecord, indexOfLastRecord)
+              .map((data, index) => {
+                return (
+                  <div key={index} className={CategoryDataStyles.listTopData}>
+                    {data['title']}
+                  </div>
+                );
+              })
+          : categoryData
+              .slice(indexOfFirstRecord, indexOfLastRecord)
+              .map((data, index) => {
+                return (
+                  <div key={index} className={CategoryDataStyles.listTopData}>
+                    {data['title']}
+                  </div>
+                );
+              })}
         <Pagination
           activePage={page} // 현재 페이지
           itemsCountPerPage={5} // 한 페이지당 보여줄 리스트 아이템의 개수

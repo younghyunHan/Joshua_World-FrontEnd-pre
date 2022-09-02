@@ -57,6 +57,8 @@ function AllData({ searchData }) {
     }
   }, [searchData]);
 
+  console.log(returnSearchdata);
+
   return (
     <article>
       <section id={AllDataStyles.listTop}>

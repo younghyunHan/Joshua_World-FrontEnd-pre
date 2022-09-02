@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Pagination from 'react-js-pagination';
 import axios from 'axios';
+import Carousel from '../Carousel/Carousel';
 
 import MainContentStyles from './MainContent.module.css';
 
@@ -109,6 +110,7 @@ function MainContent({ selectCategoryData }) {
         nextPageText='›' // "다음"을 나타낼 텍스트 (next, >, ...)
         onChange={handlePageChange} // 페이지가 바뀔 때 핸들링해줄 함수
       />
+      <Carousel allData={allData} />
     </div>
   );
 }

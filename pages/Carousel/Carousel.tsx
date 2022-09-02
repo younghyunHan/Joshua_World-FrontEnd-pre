@@ -26,7 +26,7 @@ function Carousel({ allData }) {
           return (
             <div key={allData['id']} className={CarouselStyles.carouselContent}>
               <img
-                src='/images/myImg.png'
+                src='/images/react_logo.png'
                 alt='myImg'
                 className={CarouselStyles.myImg}
               />

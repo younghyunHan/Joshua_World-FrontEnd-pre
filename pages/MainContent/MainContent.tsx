@@ -70,7 +70,7 @@ function MainContent({ selectCategoryData }) {
                   >
                     <img
                       alt='contentImg'
-                      src='/images/myImg.png'
+                      src='/images/javaScript_logo.png'
                       className={MainContentStyles.myImg}
                     />
                     <span className={MainContentStyles.myImgTitle}>
@@ -89,7 +89,7 @@ function MainContent({ selectCategoryData }) {
                   >
                     <img
                       alt='contentImg'
-                      src='/images/myImg.png'
+                      src='/images/typeScript_logo.png'
                       className={MainContentStyles.myImg}
                     />
                     <span className={MainContentStyles.myImgTitle}>

@@ -73,7 +73,11 @@ function Main() {
         </header>
         <nav id={MainStyles.sideBar}>
           <div id={MainStyles.sideBarOne}>
-            <img id={MainStyles.myImg} alt='myImg' src='/images/myImg.png' />
+            <img
+              id={MainStyles.myImg}
+              alt='myImg'
+              src='/images/myProfile.png'
+            />
             <div id={MainStyles.sideBarOneContent}>
               <span id={MainStyles.myName}>younghyun(Black)</span>
               <span id={MainStyles.myJob}>FrontDev</span>

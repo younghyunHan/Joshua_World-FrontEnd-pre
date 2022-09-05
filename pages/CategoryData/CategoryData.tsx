@@ -54,7 +54,6 @@ function CategoryData({ selectCategoryData, searchData }) {
           },
         })
         .then((response: any) => {
-          console.log(response);
           setReturnSearchData(response.data);
         });
     }

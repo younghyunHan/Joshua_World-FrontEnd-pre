@@ -13,7 +13,6 @@ function Carousel({ allData }) {
     autoplay: true,
     autoplaySpeed: 2500,
     arrow: true,
-    Fade: true,
     slidesToShow: 2,
     slideToScroll: 1,
     pauseOnHover: true,

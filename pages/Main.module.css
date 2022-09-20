@@ -86,8 +86,8 @@
 }
 
 #profile,
-#myName,
-#myJob {
+#userName,
+#editButton {
   cursor: pointer;
 }
 
@@ -104,29 +104,16 @@
   transform: scaleX(1);
 }
 
-#myName:after {
+#userName:after {
   display: block;
-  width: 100px;
+  width: 30px;
   content: '';
   border-bottom: 1px solid #b8bfc1;
   transform: scaleX(0);
   transition: transform 250ms ease-in-out;
 }
 
-#myName:hover:after {
-  transform: scaleX(1);
-}
-
-#myJob:after {
-  display: block;
-  width: 50px;
-  content: '';
-  border-bottom: 1px solid #b8bfc1;
-  transform: scaleX(0);
-  transition: transform 250ms ease-in-out;
-}
-
-#myJob:hover:after {
+#userName:hover:after {
   transform: scaleX(1);
 }
 
@@ -152,6 +139,18 @@
 
 #addManContent:hover:after {
   transform: scaleX(1);
+}
+
+#editButtonWrap {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#editButton {
+  color: #bdccd6;
+  font-weight: bold;
+  background-color: white;
+  border: 1px solid white;
 }
 
 #navData {

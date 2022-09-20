@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
+import Modal from './Modal/Modal';
 
 import TOP_MENU_LIST from './TopMenuData';
 import AllData from './AllData/AllData';
@@ -13,6 +14,7 @@ function Main() {
   const [navList, setNavList] = useState([]);
   const [selectCategoryData, setSelectCategoryData] = useState('');
   const [searchData, setSearchData] = useState('');
+  const [modalOpen, setModalOpen] = useState(false);
 
   const access_token = localStorage.getItem('token');
 
@@ -29,12 +31,16 @@ function Main() {
   }, []);
 
   const selectCategory = (event: any) => {
-    return setSelectCategoryData(event.target.textContent);
+    setSelectCategoryData(event.target.textContent);
   };
 
   const searchUsersInput = (event: any) => {
-    let userInput = event.target.value;
+    const userInput = event.target.value;
     setSearchData(userInput);
+  };
+
+  const showEditModal = () => {
+    setModalOpen(!modalOpen);
   };
 
   return (
@@ -43,22 +49,17 @@ function Main() {
         <header>
           <div id={MainStyles.topMenuWrap}>
             <ul id={MainStyles.topMenu}>
-              {TOP_MENU_LIST.map((data, index) => {
-                return (
-                  <li key={data.id} className={MainStyles.topMenuContent}>
-                    <Link
-                      href={data.movePath}
-                      className={MainStyles.goToSignIn}
-                    >
-                      {data.topMenu}
-                    </Link>
-                    {!(index === TOP_MENU_LIST.length) && (
-                      <div className={MainStyles.txtBar} />
-                    )}
-                  </li>
-                );
-              })}
-              <Link href='/SignIn' id={MainStyles.goToSignIn}>
+              {TOP_MENU_LIST.map((data, index) => (
+                <li key={data.id} className={MainStyles.topMenuContent}>
+                  <Link href={data.movePath} className={MainStyles.goToSignIn}>
+                    {data.topMenu}
+                  </Link>
+                  {!(index === TOP_MENU_LIST.length) && (
+                    <div className={MainStyles.txtBar} />
+                  )}
+                </li>
+              ))}
+              <Link href="/SignIn" id={MainStyles.goToSignIn}>
                 {access_token ? '로그아웃' : '로그인'}
               </Link>
             </ul>
@@ -66,8 +67,8 @@ function Main() {
           <div id={MainStyles.headerImgBox}>
             <img
               id={MainStyles.headerImg}
-              alt='myImg'
-              src='/images/headerImg.png'
+              alt="myImg"
+              src="/images/headerImg.png"
             />
           </div>
         </header>
@@ -75,15 +76,19 @@ function Main() {
           <div id={MainStyles.sideBarOne}>
             <img
               id={MainStyles.myImg}
-              alt='myImg'
-              src='/images/myProfile.png'
+              alt="myImg"
+              src="/images/myProfile.png"
             />
             <div id={MainStyles.sideBarOneContent}>
-              <span id={MainStyles.myName}>younghyun(Black)</span>
-              <span id={MainStyles.myJob}>FrontDev</span>
+              <span id={MainStyles.userName}>Black</span>
               <span id={MainStyles.profile}>프로필</span>
               <div id={MainStyles.addMan}>
                 <span id={MainStyles.addManContent}>이웃추가</span>
+              </div>
+              <div id={MainStyles.editButtonWrap}>
+                <button id={MainStyles.editButton} onClick={showEditModal}>
+                  Edit
+                </button>
               </div>
             </div>
           </div>
@@ -99,37 +104,35 @@ function Main() {
               </div>
               {categoryVisible && (
                 <ul>
-                  {navList.map((navData) => {
-                    return (
-                      <li
-                        key={navData['id']}
-                        className={MainStyles.navDataContent}
-                      >
-                        <img
-                          className={MainStyles.menuArrow}
-                          alt='menuArrow'
-                          src='/images/arrow.png'
-                        />
-                        <span onClick={selectCategory}>
-                          {navData['category']}
-                        </span>
-                      </li>
-                    );
-                  })}
+                  {navList.map(navData => (
+                    <li
+                      key={navData['id']}
+                      className={MainStyles.navDataContent}
+                    >
+                      <img
+                        className={MainStyles.menuArrow}
+                        alt="menuArrow"
+                        src="/images/arrow.png"
+                      />
+                      <span onClick={selectCategory}>
+                        {navData['category']}
+                      </span>
+                    </li>
+                  ))}
                 </ul>
               )}
             </div>
           </div>
           <div id={MainStyles.searchBox}>
             <input
-              placeholder='검색'
+              placeholder="검색"
               id={MainStyles.search}
               onChange={searchUsersInput}
             />
             <img
               id={MainStyles.searchIcon}
-              alt='searchIcon'
-              src='/images/search.png'
+              alt="searchIcon"
+              src="/images/search.png"
             />
           </div>
         </nav>
@@ -149,6 +152,7 @@ function Main() {
         </div>
         <MainContent selectCategoryData={selectCategoryData} />
       </div>
+      {modalOpen && <Modal setModalOpen={showEditModal} />}
     </div>
   );
 }

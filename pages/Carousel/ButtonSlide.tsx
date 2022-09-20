@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import PrevSliderButton from './PrevSlideButton';
-import NextSliderButton from './NextSlidebutton';
+import NextSliderButton from './NextSlideButton';
 
 import ButtonSlideStyles from './ButtonSlide.module.css';
 

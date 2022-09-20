@@ -38,11 +38,11 @@ export default function Index() {
         user_name: name,
       }),
     })
-      .then((response) => response.json())
-      .then((result) => {
+      .then(response => response.json())
+      .then(result => {
         if (result.message === 'SUCCESS') {
           alert('회원가입이 완료되었습니다.');
-          router.push('/SignIn/SignIn');
+          router.push('/SignIn');
         }
       });
   };
@@ -75,7 +75,7 @@ export default function Index() {
         setIsEmail(true);
       }
     },
-    []
+    [],
   );
 
   // 비밀번호
@@ -88,7 +88,7 @@ export default function Index() {
 
       if (!passwordRegex.test(passwordCurrent)) {
         setPasswordMessage(
-          '숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요!'
+          '숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요!',
         );
         setIsPassword(false);
       } else {
@@ -96,7 +96,7 @@ export default function Index() {
         setIsPassword(true);
       }
     },
-    []
+    [],
   );
 
   // 비밀번호 확인
@@ -104,7 +104,6 @@ export default function Index() {
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const passwordConfirmCurrent = e.target.value;
       setPasswordConfirm(passwordConfirmCurrent);
-      console.log(password);
 
       if (password === passwordConfirmCurrent) {
         setPasswordConfirmMessage('비밀번호를 똑같이 입력했어요 : )');
@@ -114,7 +113,7 @@ export default function Index() {
         setIsPasswordConfirm(false);
       }
     },
-    [password]
+    [password],
   );
 
   return (
@@ -126,9 +125,9 @@ export default function Index() {
             <div id={SignUpStyles.signUpTitle}>회원가입</div>
             <input
               id={SignUpStyles.userName}
-              type='text'
-              name='user_name'
-              placeholder='닉네임'
+              type="text"
+              name="user_name"
+              placeholder="닉네임"
               onChange={onChangeName}
             />
             {name.length > 0 && (
@@ -142,9 +141,9 @@ export default function Index() {
             )}
             <input
               id={SignUpStyles.userId}
-              type='text'
-              name='user_id'
-              placeholder='이메일'
+              type="text"
+              name="user_id"
+              placeholder="이메일"
               onChange={onChangeEmail}
             />
             {email.length > 0 && (
@@ -158,9 +157,9 @@ export default function Index() {
             )}
             <input
               id={SignUpStyles.userPassword}
-              type='password'
-              name='user_pw'
-              placeholder='비밀번호 (숫자 + 영문자 + 특수문자 조합으로 8자리 이상)'
+              type="password"
+              name="user_pw"
+              placeholder="비밀번호 (숫자 + 영문자 + 특수문자 조합으로 8자리 이상)"
               onChange={onChangePassword}
             />
             {password.length > 0 && (
@@ -176,9 +175,9 @@ export default function Index() {
             )}
             <input
               id={SignUpStyles.userPassword}
-              type='password'
-              name='user_pw_confirm'
-              placeholder='비밀번호 확인'
+              type="password"
+              name="user_pw_confirm"
+              placeholder="비밀번호 확인"
               onChange={onChangePasswordConfirm}
             />
             {passwordConfirm.length > 0 && (
@@ -195,7 +194,7 @@ export default function Index() {
           </div>
         </div>
         <button
-          type='button'
+          type="button"
           className={`${SignUpStyles.signUpBtn} ${
             isName && isEmail && isPassword && isPasswordConfirm
               ? `${SignUpStyles.signUpBtnLive}`

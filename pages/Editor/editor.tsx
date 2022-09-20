@@ -69,24 +69,18 @@ export default function Editor() {
   console.log(selectNavData);
 
   return (
-    <>
-      <form id={EditorStyles.EditorWrap}>
-        <div id={EditorStyles.EditorWrapTop}>
-          <input placeholder='제목' id={EditorStyles.postTitle} />
-          <select onChange={selectOption} id={EditorStyles.selectOption}>
-            {navList.map((navList) => {
-              return (
-                <option
-                  key={navList['id']}
-                  className={EditorStyles.postCategory}
-                >
-                  {navList['category']}
-                </option>
-              );
-            })}
-          </select>
-        </div>
-        {/* <CKEditor
+    <form id={EditorStyles.EditorWrap}>
+      <div id={EditorStyles.EditorWrapTop}>
+        <input placeholder="제목" id={EditorStyles.postTitle} />
+        <select onChange={selectOption} id={EditorStyles.selectOption}>
+          {navList.map(navList => (
+            <option key={navList['id']} className={EditorStyles.postCategory}>
+              {navList['category']}
+            </option>
+          ))}
+        </select>
+      </div>
+      {/* <CKEditor
           editor={ClassicEditor}
           config={{
             plugins: [Paragraph, Bold, Italic, Essentials],
@@ -98,10 +92,9 @@ export default function Editor() {
             console.log('Editor1 is ready to use!', editor);
           }}
         /> */}
-        <button type='button' id={EditorStyles.postSubmit} onClick={addPost}>
-          제출
-        </button>
-      </form>
-    </>
+      <button type="button" id={EditorStyles.postSubmit} onClick={addPost}>
+        제출
+      </button>
+    </form>
   );
 }

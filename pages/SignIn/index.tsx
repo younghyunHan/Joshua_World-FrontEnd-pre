@@ -5,6 +5,13 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 export default function Index() {
+  // const inputRef = useRef<HTMLDivElement>(null);
+
+  // useEffect(() => {
+  //   console.log(inputRef);
+  //   inputRef.current.focus();
+  // }, []);
+
   //이름, 이메일, 비밀번호, 비밀번호 확인
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -35,9 +42,8 @@ export default function Index() {
         user_pw: password,
       }),
     })
-      .then((response) => response.json())
-      .then((result) => {
-        console.log(result);
+      .then(response => response.json())
+      .then(result => {
         if (result.token) {
           localStorage.setItem('token', result.token);
           alert('환영합니다.');
@@ -64,7 +70,7 @@ export default function Index() {
         setIsEmail(true);
       }
     },
-    []
+    [],
   );
 
   // 비밀번호
@@ -77,7 +83,7 @@ export default function Index() {
 
       if (!passwordRegex.test(passwordCurrent)) {
         setPasswordMessage(
-          '숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요!'
+          '숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요!',
         );
         setIsPassword(false);
       } else {
@@ -85,7 +91,7 @@ export default function Index() {
         setIsPassword(true);
       }
     },
-    []
+    [],
   );
 
   // 비밀번호 확인
@@ -102,10 +108,10 @@ export default function Index() {
         setIsPasswordConfirm(false);
       }
     },
-    [password]
+    [password],
   );
 
-  return (
+  https: return (
     <div id={SignInStyles.signIn}>
       <form id={SignInStyles.signInForm}>
         <div id={SignInStyles.signInFormTop}>
@@ -114,9 +120,10 @@ export default function Index() {
             <div id={SignInStyles.signInTitle}>로그인</div>
             <input
               id={SignInStyles.userId}
-              type='text'
-              name='user_id'
-              placeholder='전화번호, 사용자 이름 또는 이메일'
+              // ref={inputRef}
+              type="text"
+              name="user_id"
+              placeholder="전화번호, 사용자 이름 또는 이메일"
               onChange={onChangeEmail}
             />
             {email.length > 0 && (
@@ -130,9 +137,9 @@ export default function Index() {
             )}
             <input
               id={SignInStyles.userPassword}
-              type='password'
-              name='user_pw'
-              placeholder='비밀번호'
+              type="password"
+              name="user_pw"
+              placeholder="비밀번호"
               onChange={onChangePassword}
             />
             {password.length > 0 && (
@@ -148,9 +155,9 @@ export default function Index() {
             )}
             <input
               id={SignInStyles.userPassword}
-              type='password'
-              name='user_pw_confirm'
-              placeholder='비밀번호 확인'
+              type="password"
+              name="user_pw_confirm"
+              placeholder="비밀번호 확인"
               onChange={onChangePasswordConfirm}
             />
             {passwordConfirm.length > 0 && (
@@ -168,7 +175,7 @@ export default function Index() {
         </div>
         <div id={SignInStyles.SignInBtnWrap}>
           <button
-            type='button'
+            type="button"
             className={`${SignInStyles.signInBtn} ${
               isEmail && isPassword && isPasswordConfirm
                 ? `${SignInStyles.signInBtnLive}`
@@ -179,8 +186,8 @@ export default function Index() {
           >
             로그인
           </button>
-          <Link href='/SignUp'>
-            <button type='button' id={SignInStyles.goToSignUp}>
+          <Link href="/SignUp">
+            <button type="button" id={SignInStyles.goToSignUp}>
               회원가입
             </button>
           </Link>

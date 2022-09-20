@@ -51,13 +51,10 @@ function AllData({ searchData }) {
           },
         })
         .then((response: any) => {
-          console.log(response);
           setReturnSearchData(response.data);
         });
     }
   }, [searchData]);
-
-  console.log(returnSearchdata);
 
   return (
     <article>
@@ -69,7 +66,7 @@ function AllData({ searchData }) {
               <span>총 {allData.length}개 글</span>
             </div>
             <div id={AllDataStyles.listTopOneRight}>
-              <Link href='/Editor/Editor'>
+              <Link href="/Editor/Editor">
                 <div>글쓰기</div>
               </Link>
             </div>
@@ -82,29 +79,23 @@ function AllData({ searchData }) {
         {returnSearchdata.length > 0
           ? returnSearchdata
               .slice(indexOfFirstRecord, indexOfLastRecord)
-              .map((data, index) => {
-                return (
-                  <div key={data['id']} className={AllDataStyles.listTopData}>
-                    {data['title']}
-                  </div>
-                );
-              })
-          : allData
-              .slice(indexOfFirstRecord, indexOfLastRecord)
-              .map((data, index) => {
-                return (
-                  <div key={data['id']} className={AllDataStyles.listTopData}>
-                    {data['title']}
-                  </div>
-                );
-              })}
+              .map(data => (
+                <div key={data['id']} className={AllDataStyles.listTopData}>
+                  {data['title']}
+                </div>
+              ))
+          : allData.slice(indexOfFirstRecord, indexOfLastRecord).map(data => (
+              <div key={data['id']} className={AllDataStyles.listTopData}>
+                {data['title']}
+              </div>
+            ))}
         <Pagination
           activePage={page} // 현재 페이지
           itemsCountPerPage={5} // 한 페이지당 보여줄 리스트 아이템의 개수
           totalItemsCount={allData.length} // 총 아이템의 개수
           pageRangeDisplayed={5} //  Paginator 내에서 보여줄 페이지의 범위
-          prevPageText='‹' // "이전"을 나타낼 텍스트 (prev, <, ...)
-          nextPageText='›' // "다음"을 나타낼 텍스트 (next, >, ...)
+          prevPageText="‹" // "이전"을 나타낼 텍스트 (prev, <, ...)
+          nextPageText="›" // "다음"을 나타낼 텍스트 (next, >, ...)
           onChange={handlePageChange} // 페이지가 바뀔 때 핸들링해줄 함수
         />
       </section>

@@ -47,7 +47,7 @@
   border-radius: 10px;
 }
 
-#userImg {
+/* #userImg {
   display: none;
 }
 
@@ -60,7 +60,7 @@
   background-color: #2860f1;
   border: 1px solid #2860f1;
   border-radius: 5px;
-}
+} */
 
 .success {
   color: #ff7a3c;

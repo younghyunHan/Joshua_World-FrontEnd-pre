@@ -1,11 +1,14 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import ModuleStyles from './Modal.module.css';
 import axios from 'axios';
+import { ifError } from 'assert';
 
 export default function Modal({ setModalOpen }) {
   const access_token = localStorage.getItem('token');
   const modalRef = useRef<HTMLFormElement>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
+
+  const [userInfoData, setUserInfoData] = useState({});
 
   // 이름, 비밀번호
   const [name, setName] = useState<string>('');
@@ -74,49 +77,67 @@ export default function Modal({ setModalOpen }) {
     [],
   );
 
-  const onUploadImage = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      e.preventDefault();
-      if (!e.target.files) {
-        return;
-      }
+  // const onUploadImage = useCallback(
+  //   (e: React.ChangeEvent<HTMLInputElement>) => {
+  //     e.preventDefault();
+  //     if (!e.target.files) {
+  //       return;
+  //     }
 
-      const formData = new FormData();
-      formData.append('image', e.target.files[0]);
-      formData.append('user_name', name);
-      formData.append('user_pw', password);
+  //     const formData = new FormData();
+  //     formData.append('image', e.target.files[0]);
+  //     formData.append('user_name', name);
+  //     formData.append('user_pw', password);
 
-      console.log(formData);
+  //     setUserInfoData(formData);
+  //   },
+  //   [],
+  // );
 
-      axios
-        .post(
-          'http://localhost:3000/userInfoUpdate',
-          {
-            userInfo: formData,
-          },
-          {
-            headers: {
-              Authorization: `${access_token}`,
-              'Content-Type': 'multipart/form-data',
-            },
-          },
-        )
-        .then(function (response) {
-          console.log(response);
-          if (response.data.message === 'SUCCESS') {
-            alert('저장 완료 되었습니다.');
-          }
-        });
-    },
-    [],
-  );
+  // const onUploadImageButtonClick = useCallback((event: any) => {
+  //   event.preventDefault();
+  //   if (!inputRef.current) {
+  //     return;
+  //   }
+  //   inputRef.current.click();
+  // }, []);
 
-  const onUploadImageButtonClick = useCallback((event: any) => {
+  const onUploadUserInfoButtonClick = useCallback((event: any) => {
     event.preventDefault();
     if (!inputRef.current) {
       return;
     }
-    inputRef.current.click();
+
+    // console.log(inputRef.current?.files?.[0].name);
+    const files = inputRef.current.files as FileList;
+    console.log(files[0]?.name);
+
+    const formData = new FormData();
+    // formData.append('image', inputRef.current?.files?.[0].name);
+    formData.append('image', files[0]?.name);
+    formData.append('user_name', name);
+    formData.append('user_pw', password);
+
+    axios
+      .post(
+        'http://localhost:3000/userInfoUpdate',
+        {
+          userInfo: formData,
+        },
+        {
+          headers: {
+            Authorization: `${access_token}`,
+            'Content-Type': 'multipart/form-data',
+          },
+        },
+      )
+      .then(function (response) {
+        console.log(response);
+        if (response.data.message === 'SUCCESS') {
+          alert('저장 완료 되었습니다.');
+          // setModalOpen(false);
+        }
+      });
   }, []);
 
   return (
@@ -159,13 +180,18 @@ export default function Modal({ setModalOpen }) {
           type="file"
           accept="image/*"
           ref={inputRef}
-          onChange={onUploadImage}
+          // onChange={onUploadImage}
         />
-        <button id={ModuleStyles.userImgBtn} onClick={onUploadImageButtonClick}>
+        {/* <button id={ModuleStyles.userImgBtn} onClick={onUploadImageButtonClick}>
           이미지 업로드
-        </button>
+        </button> */}
       </div>
-      <button id={ModuleStyles.editSubmitBtn}>개인 정보 수정 </button>
+      <button
+        id={ModuleStyles.editSubmitBtn}
+        onClick={onUploadUserInfoButtonClick}
+      >
+        개인 정보 수정{' '}
+      </button>
     </form>
   );
 }

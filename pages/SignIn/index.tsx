@@ -111,7 +111,7 @@ export default function Index() {
     [password],
   );
 
-  https: return (
+  return (
     <div id={SignInStyles.signIn}>
       <form id={SignInStyles.signInForm}>
         <div id={SignInStyles.signInFormTop}>

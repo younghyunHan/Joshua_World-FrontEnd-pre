@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import ModuleStyles from './Modal.module.css';
 import axios from 'axios';
-import { ifError } from 'assert';
 
 export default function Modal({ setModalOpen }) {
   const access_token = localStorage.getItem('token');
@@ -14,7 +13,7 @@ export default function Modal({ setModalOpen }) {
   const [name, setName] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
-  //오류메시지 상태저장
+  //오류 메시지 상태저장
   const [nameMessage, setNameMessage] = useState<string>('');
   const [passwordMessage, setPasswordMessage] = useState<string>('');
 
@@ -135,7 +134,7 @@ export default function Modal({ setModalOpen }) {
         console.log(response);
         if (response.data.message === 'SUCCESS') {
           alert('저장 완료 되었습니다.');
-          // setModalOpen(false);
+          setModalOpen(false);
         }
       });
   }, []);

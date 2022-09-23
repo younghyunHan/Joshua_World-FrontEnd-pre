@@ -109,11 +109,11 @@ export default function Modal({ setModalOpen }) {
 
     // console.log(inputRef.current?.files?.[0].name);
     const files = inputRef.current.files as FileList;
-    console.log(files[0]?.name);
+    console.log(files[0]);
 
     const formData = new FormData();
     // formData.append('image', inputRef.current?.files?.[0].name);
-    formData.append('image', files[0]?.name);
+    formData.append('image', files[0]);
     formData.append('user_name', name);
     formData.append('user_pw', password);
 

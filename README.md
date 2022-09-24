@@ -22,3 +22,6 @@
   - useRef 활용해 모달 창 외부 클릭 시 모달 창 종료
   - formData 객체 활용해 이미지 파일 백 엔드로 전송
 - 슬라이드 기능
+
+## 적용 기술
+TypeScript, Next.js, React, HTML5/CSS3, MySQL, Git/Github, Editor(ESLinst, Prettier), AWS(EC2), NginX

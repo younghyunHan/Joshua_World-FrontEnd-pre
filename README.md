@@ -1,34 +1,27 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## BLOG
+- 네이버 블로그를 모티브로 웹 사이트 제작
 
-## Getting Started
+## 프로젝트 기간
+2022.07.13.수 ~
 
-First, run the development server:
+## 프로젝트 참여인원
+프론트 엔드, 백 엔드 : 한영현
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## 구현 사항
+### 회원가입
+- 이름, 이메일, 비밀 번호, 비밀 번호 확인 유효성 검사 ( 정규 표현식 활용 )
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 로그인
+- 이름, 이메일, 비밀 번호 유효성 검사 ( 정규 표현식 활용 )
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### 메인 페이지
+- 카테고리 기능
+- 검색 기능
+- pagination 기능 ( slick-carousel 라이브러리 활용 )
+- Modal창 기능
+  - useRef 활용해 모달 창 외부 클릭 시 모달 창 종료
+  - formData 객체 활용해 이미지 파일 백 엔드로 전송
+- 슬라이드 기능
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## 적용 기술
+TypeScript, Node.js(Express), Next.js, React, HTML5/CSS3, MySQL, Git/Github, Editor(ESLinst, Prettier), AWS(EC2), NginX

@@ -24,4 +24,4 @@
 - 슬라이드 기능
 
 ## 적용 기술
-TypeScript, Next.js, React, HTML5/CSS3, MySQL, Git/Github, Editor(ESLinst, Prettier), AWS(EC2), NginX
+TypeScript, Node.js(Express), Next.js, React, HTML5/CSS3, MySQL, Git/Github, Editor(ESLinst, Prettier), AWS(EC2), NginX

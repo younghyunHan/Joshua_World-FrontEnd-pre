@@ -63,42 +63,35 @@ function MainContent({ selectCategoryData }) {
         {categoryData.length > 0
           ? categoryData
               .slice(indexOfFirstRecord, indexOfLastRecord)
-              .map((data, index) => {
-                return (
-                  <div
-                    key={index}
-                    className={MainContentStyles.mainContentData}
-                  >
-                    <img
-                      alt='contentImg'
-                      src='/images/javaScript_logo.png'
-                      className={MainContentStyles.myImg}
-                    />
-                    <span className={MainContentStyles.myImgTitle}>
-                      {data['title']}
-                    </span>
-                  </div>
-                );
-              })
+              .map((data, index) => (
+                <div key={index} className={MainContentStyles.mainContentData}>
+                  <img
+                    alt="contentImg"
+                    src="/images/javaScript_logo.png"
+                    className={MainContentStyles.myImg}
+                  />
+                  <span className={MainContentStyles.myImgTitle}>
+                    {data['title']}
+                  </span>
+                </div>
+              ))
           : allData
               .slice(indexOfFirstRecord, indexOfLastRecord)
-              .map((data, index) => {
-                return (
-                  <div
-                    key={data['id']}
-                    className={MainContentStyles.mainContentData}
-                  >
-                    <img
-                      alt='contentImg'
-                      src='/images/typeScript_logo.png'
-                      className={MainContentStyles.myImg}
-                    />
-                    <span className={MainContentStyles.myImgTitle}>
-                      {data['title']}
-                    </span>
-                  </div>
-                );
-              })}
+              .map((data, index) => (
+                <div
+                  key={data['id']}
+                  className={MainContentStyles.mainContentData}
+                >
+                  <img
+                    alt="contentImg"
+                    src="/images/typeScript_logo.png"
+                    className={MainContentStyles.myImg}
+                  />
+                  <span className={MainContentStyles.myImgTitle}>
+                    {data['title']}
+                  </span>
+                </div>
+              ))}
       </div>
       <Pagination
         activePage={page} // 현재 페이지
@@ -107,8 +100,8 @@ function MainContent({ selectCategoryData }) {
           categoryData.length > 0 ? categoryData.length : allData.length
         } // 총 아이템의 개수
         pageRangeDisplayed={5} //  Paginator 내에서 보여줄 페이지의 범위
-        prevPageText='‹' // "이전"을 나타낼 텍스트 (prev, <, ...)
-        nextPageText='›' // "다음"을 나타낼 텍스트 (next, >, ...)
+        prevPageText="‹" // "이전"을 나타낼 텍스트 (prev, <, ...)
+        nextPageText="›" // "다음"을 나타낼 텍스트 (next, >, ...)
         onChange={handlePageChange} // 페이지가 바뀔 때 핸들링해줄 함수
       />
       <Carousel allData={allData} />

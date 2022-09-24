@@ -30,35 +30,33 @@ function ButtonSlide({ allData }) {
     <div id={ButtonSlideStyles.ButtonSlide}>
       <PrevSliderButton
         currentIndex={currentIndex}
-        direction='Prev'
+        direction="Prev"
         onClick={() => handleSwipe(-1)}
       />
-      {allData.map((allData: any) => {
-        return (
-          <div
-            key={allData['id']}
-            className={ButtonSlideStyles.ButtonSlideContent}
-            style={{
-              transform: `translateX(${slidePx}px)`,
-              transition: '0.5s ease',
-            }}
-          >
-            <img
-              src='/images/nextjs_logo.png'
-              alt='myImg'
-              className={ButtonSlideStyles.myImg}
-            />
-            <span className={ButtonSlideStyles.myImgTitle}>
-              {allData['title']}
-            </span>
-          </div>
-        );
-      })}
+      {allData.map((allData: any) => (
+        <div
+          key={allData['id']}
+          className={ButtonSlideStyles.ButtonSlideContent}
+          style={{
+            transform: `translateX(${slidePx}px)`,
+            transition: '0.5s ease',
+          }}
+        >
+          <img
+            src="/images/nextjs_logo.png"
+            alt="myImg"
+            className={ButtonSlideStyles.myImg}
+          />
+          <span className={ButtonSlideStyles.myImgTitle}>
+            {allData['title']}
+          </span>
+        </div>
+      ))}
       <NextSliderButton
         currentIndex={currentIndex}
         dataLength={allData}
         slidePx={slidePx}
-        direction='Next'
+        direction="Next"
         onClick={() => handleSwipe(1)}
       />
     </div>

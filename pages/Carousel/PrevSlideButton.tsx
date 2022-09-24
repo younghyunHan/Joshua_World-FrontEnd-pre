@@ -8,8 +8,8 @@ export default function PrevSlideButton({ direction, currentIndex, onClick }) {
       style={{ display: currentIndex === 0 ? 'none' : '' }}
     >
       <img
-        src='/images/left_arrow.png'
-        alt='leftArrow'
+        src="/images/leftArrow.png"
+        alt="leftArrow"
         id={PrevSlideButtonStyles.leftArrow}
       />
     </button>

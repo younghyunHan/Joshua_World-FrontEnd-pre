@@ -14,8 +14,8 @@ export default function NextSlideButton({
       style={{ display: currentIndex === dataLength.length ? 'none' : '' }}
     >
       <img
-        src='/images/left_arrow.png'
-        alt='rightArrow'
+        src="/images/leftArrow.png"
+        alt="rightArrow"
         id={NextSlideButtonStyles.rightArrow}
       />
     </button>

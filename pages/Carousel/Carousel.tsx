@@ -21,20 +21,18 @@ function Carousel({ allData }) {
   return (
     <div id={CarouselStyles.Carousel}>
       <Slider {...settings}>
-        {allData.map((allData) => {
-          return (
-            <div key={allData['id']} className={CarouselStyles.carouselContent}>
-              <img
-                src='/images/react_logo.png'
-                alt='myImg'
-                className={CarouselStyles.myImg}
-              />
-              <span className={CarouselStyles.myImgTitle}>
-                {allData['title']}
-              </span>
-            </div>
-          );
-        })}
+        {allData.map(allData => (
+          <div key={allData['id']} className={CarouselStyles.carouselContent}>
+            <img
+              src="/images/react_logo.png"
+              alt="myImg"
+              className={CarouselStyles.myImg}
+            />
+            <span className={CarouselStyles.myImgTitle}>
+              {allData['title']}
+            </span>
+          </div>
+        ))}
       </Slider>
     </div>
   );

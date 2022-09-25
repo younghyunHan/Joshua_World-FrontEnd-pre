@@ -118,18 +118,12 @@ export default function Modal({ setModalOpen }) {
     formData.append('user_pw', password);
 
     axios
-      .post(
-        'http://localhost:3000/userInfoUpdate',
-        {
-          userInfo: formData,
+      .post('http://localhost:3000/userInfoUpdate', formData, {
+        headers: {
+          Authorization: `${access_token}`,
+          'Content-Type': 'multipart/form-data',
         },
-        {
-          headers: {
-            Authorization: `${access_token}`,
-            'Content-Type': 'multipart/form-data',
-          },
-        },
-      )
+      })
       .then(function (response) {
         console.log(response);
         if (response.data.message === 'SUCCESS') {
@@ -137,6 +131,22 @@ export default function Modal({ setModalOpen }) {
           setModalOpen(false);
         }
       });
+
+    // axios({
+    //   url: 'http://localhost:3000/userInfoUpdate',
+    //   method: 'POST',
+    //   data: formData,
+    //   headers: {
+    //     Authorization: `${access_token}`,
+    //     'Content-Type': 'multipart/form-data',
+    //   },
+    // })
+    //   .then(response => {
+    //     console.log(response.data);
+    //   })
+    //   .catch(error => {
+    //     console.error(error);
+    //   });
   }, []);
 
   return (

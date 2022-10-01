@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
-import Modal from './Modal/Modal';
 
+import Modal from './Modal/Modal';
 import TOP_MENU_LIST from './TopMenuData';
 import AllData from './AllData/AllData';
 import CategoryData from './CategoryData/CategoryData';
 import MainContent from './MainContent/MainContent';
+
 import MainStyles from './Main.module.css';
 
 function Main() {

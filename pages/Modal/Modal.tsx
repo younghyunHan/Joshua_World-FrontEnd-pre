@@ -76,78 +76,40 @@ export default function Modal({ setModalOpen }) {
     [],
   );
 
-  // const onUploadImage = useCallback(
-  //   (e: React.ChangeEvent<HTMLInputElement>) => {
-  //     e.preventDefault();
-  //     if (!e.target.files) {
-  //       return;
-  //     }
+  const onUploadUserInfoButtonClick = useCallback(
+    (event: any) => {
+      event.preventDefault();
+      if (!inputRef.current) {
+        return;
+      }
 
-  //     const formData = new FormData();
-  //     formData.append('image', e.target.files[0]);
-  //     formData.append('user_name', name);
-  //     formData.append('user_pw', password);
+      // console.log(inputRef.current?.files?.[0].name);
+      const files = inputRef.current.files as FileList;
+      console.log(files[0]);
 
-  //     setUserInfoData(formData);
-  //   },
-  //   [],
-  // );
+      const formData = new FormData();
+      // formData.append('image', inputRef.current?.files?.[0].name);
+      formData.append('user_img', files[0]);
+      formData.append('user_name', name);
+      formData.append('user_pw', password);
 
-  // const onUploadImageButtonClick = useCallback((event: any) => {
-  //   event.preventDefault();
-  //   if (!inputRef.current) {
-  //     return;
-  //   }
-  //   inputRef.current.click();
-  // }, []);
-
-  const onUploadUserInfoButtonClick = useCallback((event: any) => {
-    event.preventDefault();
-    if (!inputRef.current) {
-      return;
-    }
-
-    // console.log(inputRef.current?.files?.[0].name);
-    const files = inputRef.current.files as FileList;
-    console.log(files[0]);
-
-    const formData = new FormData();
-    // formData.append('image', inputRef.current?.files?.[0].name);
-    formData.append('image', files[0]);
-    formData.append('user_name', name);
-    formData.append('user_pw', password);
-
-    axios
-      .post('http://localhost:3000/userInfoUpdate', formData, {
-        headers: {
-          Authorization: `${access_token}`,
-          'Content-Type': 'multipart/form-data',
-        },
-      })
-      .then(function (response) {
-        console.log(response);
-        if (response.data.message === 'SUCCESS') {
-          alert('저장 완료 되었습니다.');
-          setModalOpen(false);
-        }
-      });
-
-    // axios({
-    //   url: 'http://localhost:3000/userInfoUpdate',
-    //   method: 'POST',
-    //   data: formData,
-    //   headers: {
-    //     Authorization: `${access_token}`,
-    //     'Content-Type': 'multipart/form-data',
-    //   },
-    // })
-    //   .then(response => {
-    //     console.log(response.data);
-    //   })
-    //   .catch(error => {
-    //     console.error(error);
-    //   });
-  }, []);
+      axios
+        .post('http://localhost:3000/userInfoUpdate', formData, {
+          headers: {
+            Authorization: `${access_token}`,
+            'Content-Type': 'multipart/form-data',
+          },
+        })
+        .then(function (response) {
+          console.log(response);
+          if (response.data.message === 'SUCCESS') {
+            alert('저장 완료 되었습니다.');
+            setModalOpen(false);
+          }
+        });
+    },
+    [name, password],
+  );
 
   return (
     <form ref={modalRef} id={ModuleStyles.modal}>

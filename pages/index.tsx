@@ -20,7 +20,10 @@ function Main() {
   const access_token = localStorage.getItem('token');
 
   // user_info 변경
-  const [userInfoData, setUserInfoData] = useState({});
+  const [userInfoData, setUserInfoData] = useState<null | {
+    user_name: string;
+    user_img: object;
+  }>(null);
 
   useEffect(() => {
     axios

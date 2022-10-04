@@ -2,12 +2,10 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 import ModuleStyles from './Modal.module.css';
 import axios from 'axios';
 
-export default function Modal({ setModalOpen }) {
+export default function Modal({ setModalOpen, handleUserData }) {
   const access_token = localStorage.getItem('token');
   const modalRef = useRef<HTMLFormElement>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
-
-  const [userInfoData, setUserInfoData] = useState({});
 
   // 이름, 비밀번호
   const [name, setName] = useState<string>('');
@@ -101,10 +99,11 @@ export default function Modal({ setModalOpen }) {
           },
         })
         .then(function (response) {
-          console.log(response);
+          // console.log(response);
           if (response.data.message === 'SUCCESS') {
-            alert('저장 완료 되었습니다.');
-            setModalOpen(false);
+            alert('변경되었습니다.');
+            // setModalOpen(false);
+            handleUserData(response.data.user_name, response.data.user_img);
           }
         });
     },

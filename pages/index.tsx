@@ -19,6 +19,9 @@ function Main() {
 
   const access_token = localStorage.getItem('token');
 
+  // user_info 변경
+  const [userInfoData, setUserInfoData] = useState({});
+
   useEffect(() => {
     axios
       .get('http://localhost:3000/category', {
@@ -43,6 +46,18 @@ function Main() {
   const showEditModal = () => {
     setModalOpen(!modalOpen);
   };
+
+  const handleUserData = (updatedUserName, updatedUserImg) => {
+    // console.log(updatedUserImg);
+    // console.log(updatedUserName);
+    setUserInfoData({
+      // ...userInfoData,
+      user_name: updatedUserName,
+      user_img: updatedUserImg,
+    });
+  };
+
+  console.log(userInfoData);
 
   return (
     <div id={MainStyles.main}>
@@ -81,7 +96,9 @@ function Main() {
               src="/images/myProfile.png"
             />
             <div id={MainStyles.sideBarOneContent}>
-              <span id={MainStyles.userName}>Black</span>
+              <span id={MainStyles.userName}>
+                {userInfoData ? userInfoData.user_name : 'Black'}
+              </span>
               <span id={MainStyles.profile}>프로필</span>
               <div id={MainStyles.addMan}>
                 <span id={MainStyles.addManContent}>이웃추가</span>
@@ -153,7 +170,9 @@ function Main() {
         </div>
         <MainContent selectCategoryData={selectCategoryData} />
       </div>
-      {modalOpen && <Modal setModalOpen={showEditModal} />}
+      {modalOpen && (
+        <Modal setModalOpen={showEditModal} handleUserData={handleUserData} />
+      )}
     </div>
   );
 }

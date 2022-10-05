@@ -50,7 +50,7 @@ function Main() {
     setModalOpen(!modalOpen);
   };
 
-  const handleUserData = (updatedUserName, updatedUserImg) => {
+  const handleUserData = (updatedUserName: string, updatedUserImg: object) => {
     // console.log(updatedUserImg);
     // console.log(updatedUserName);
     setUserInfoData({
@@ -96,7 +96,12 @@ function Main() {
             <img
               id={MainStyles.myImg}
               alt="myImg"
-              src="/images/myProfile.png"
+              src={
+                userInfoData ? userInfoData.user_img : '/images/myProfile.png'
+                // typeof userInfoData !== 'undefined'
+                //   ? userInfoData?.user_img
+                //   : '/images/myProfile.png'
+              }
             />
             <div id={MainStyles.sideBarOneContent}>
               <span id={MainStyles.userName}>

@@ -19,11 +19,15 @@ function Main() {
 
   const access_token = localStorage.getItem('token');
 
-  // user_info 변경
-  const [userInfoData, setUserInfoData] = useState<null | {
+  interface userInfoDataType {
     user_name: string;
-    user_img: object;
-  }>(null);
+    user_img: string;
+  }
+
+  // user_info 변경
+  const [userInfoData, setUserInfoData] = useState<null | userInfoDataType>(
+    null,
+  );
 
   useEffect(() => {
     axios
@@ -51,7 +55,7 @@ function Main() {
   };
 
   const handleUserData = (updatedUserName: string, updatedUserImg: object) => {
-    // console.log(updatedUserImg);
+    // console.log(upda$tedUserImg);
     // console.log(updatedUserName);
     setUserInfoData({
       // ...userInfoData,
@@ -97,7 +101,9 @@ function Main() {
               id={MainStyles.myImg}
               alt="myImg"
               src={
-                userInfoData ? userInfoData.user_img : '/images/myProfile.png'
+                (userInfoData as unknown as string)
+                  ? userInfoData?.user_img
+                  : '/images/myProfile.png'
                 // typeof userInfoData !== 'undefined'
                 //   ? userInfoData?.user_img
                 //   : '/images/myProfile.png'

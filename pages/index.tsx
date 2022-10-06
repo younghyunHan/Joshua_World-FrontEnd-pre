@@ -4,8 +4,7 @@ import Link from 'next/link';
 
 import Modal from './Modal/Modal';
 import TOP_MENU_LIST from './TopMenuData';
-import AllData from './AllData/AllData';
-import CategoryData from './CategoryData/CategoryData';
+import TopListData from './TopListData/TopListData';
 import MainContent from './MainContent/MainContent';
 
 import MainStyles from './Main.module.css';
@@ -21,7 +20,7 @@ function Main() {
 
   interface userInfoDataType {
     user_name: string;
-    user_img: string;
+    user_img: object;
   }
 
   // user_info 변경
@@ -64,8 +63,6 @@ function Main() {
     });
   };
 
-  console.log(userInfoData);
-
   return (
     <div id={MainStyles.main}>
       <div id={MainStyles.mainWrap}>
@@ -101,8 +98,8 @@ function Main() {
               id={MainStyles.myImg}
               alt="myImg"
               src={
-                (userInfoData as unknown as string)
-                  ? userInfoData?.user_img
+                userInfoData
+                  ? userInfoData?.user_img?.fieldname
                   : '/images/myProfile.png'
                 // typeof userInfoData !== 'undefined'
                 //   ? userInfoData?.user_img
@@ -171,14 +168,10 @@ function Main() {
         <div id={MainStyles.mainContent}>
           <div id={MainStyles.listWrap}>
             <div id={MainStyles.list}>
-              {selectCategoryData ? (
-                <CategoryData
-                  selectCategoryData={selectCategoryData}
-                  searchData={searchData}
-                />
-              ) : (
-                <AllData searchData={searchData} />
-              )}
+              <TopListData
+                searchData={searchData}
+                selectCategoryData={selectCategoryData}
+              />
             </div>
           </div>
         </div>

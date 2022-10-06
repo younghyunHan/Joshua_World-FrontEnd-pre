@@ -3,14 +3,15 @@ import Pagination from 'react-js-pagination';
 import axios from 'axios';
 import Link from 'next/link';
 
-import CategoryDataStyles from './CategoryData.module.css';
+import TopListDataStyles from './TopListData.module.css';
 
-function CategoryData({ selectCategoryData, searchData }) {
+function TopListData({ searchData, selectCategoryData }) {
   const [page, setPage] = useState(1);
   const [indexOfLastRecord, setIndexOfLastRecord] = useState(5);
   const [indexOfFirstRecord, setIndexOfFirstRecord] = useState(0);
-  const [categoryData, setCatagoryData] = useState([]);
+  const [allData, setAllData] = useState([]);
   const [returnSearchdata, setReturnSearchData] = useState([]);
+  const [listData, setListData] = useState([]);
 
   const handlePageChange = (page: number) => {
     setPage(page);
@@ -26,19 +27,16 @@ function CategoryData({ selectCategoryData, searchData }) {
       const access_token = localStorage.getItem('token');
 
       axios
-        .get('http://localhost:3000/selectCategory', {
+        .get('http://localhost:3000/list', {
           headers: {
             Authorization: `${access_token}`,
           },
-          params: {
-            category: selectCategoryData,
-          },
         })
-        .then((response: any) => {
-          setCatagoryData(response.data);
+        .then(function (response) {
+          setListData(response.data);
         });
     }
-  }, [selectCategoryData]);
+  }, []);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -54,50 +52,59 @@ function CategoryData({ selectCategoryData, searchData }) {
           },
         })
         .then((response: any) => {
-          setReturnSearchData(response.data);
+          setListData(response.data);
         });
     }
   }, [searchData]);
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const access_token = localStorage.getItem('token');
+
+      axios
+        .get('http://localhost:3000/selectCategory', {
+          headers: {
+            Authorization: `${access_token}`,
+          },
+          params: {
+            category: selectCategoryData,
+          },
+        })
+        .then((response: any) => {
+          setListData(response.data);
+        });
+    }
+  }, [selectCategoryData]);
+
   return (
     <article>
-      <section id={CategoryDataStyles.listTop}>
-        <div id={CategoryDataStyles.listTopWrap}>
-          <div id={CategoryDataStyles.listTopOne}>
-            <div id={CategoryDataStyles.listTopOneLeft}>
-              <div>{selectCategoryData}</div>
-              <span>총 {categoryData.length}개 글</span>
+      <section id={TopListDataStyles.listTop}>
+        <div id={TopListDataStyles.listTopWrap}>
+          <div id={TopListDataStyles.listTopOne}>
+            <div id={TopListDataStyles.listTopOneLeft}>
+              <div>All</div>
+              <span>총 {allData.length}개 글</span>
             </div>
-            <div id={CategoryDataStyles.listTopOneRight}>
+            <div id={TopListDataStyles.listTopOneRight}>
               <Link href="/Editor/Editor">
                 <div>글쓰기</div>
               </Link>
             </div>
           </div>
-          <div id={CategoryDataStyles.listTopTwo}>
+          <div id={TopListDataStyles.listTopTwo}>
             <div>글 제목</div>
             <div>작성일</div>
           </div>
         </div>
-        {returnSearchdata.length > 0
-          ? returnSearchdata
-              .slice(indexOfFirstRecord, indexOfLastRecord)
-              .map((data, index) => (
-                <div key={index} className={CategoryDataStyles.listTopData}>
-                  {data['title']}
-                </div>
-              ))
-          : categoryData
-              .slice(indexOfFirstRecord, indexOfLastRecord)
-              .map((data, index) => (
-                <div key={index} className={CategoryDataStyles.listTopData}>
-                  {data['title']}
-                </div>
-              ))}
+        {listData.slice(indexOfFirstRecord, indexOfLastRecord).map(data => (
+          <div key={data['id']} className={TopListDataStyles.listTopData}>
+            {data['title']}
+          </div>
+        ))}
         <Pagination
           activePage={page} // 현재 페이지
           itemsCountPerPage={5} // 한 페이지당 보여줄 리스트 아이템의 개수
-          totalItemsCount={categoryData.length} // 총 아이템의 개수
+          totalItemsCount={allData.length} // 총 아이템의 개수
           pageRangeDisplayed={5} //  Paginator 내에서 보여줄 페이지의 범위
           prevPageText="‹" // "이전"을 나타낼 텍스트 (prev, <, ...)
           nextPageText="›" // "다음"을 나타낼 텍스트 (next, >, ...)
@@ -108,4 +115,4 @@ function CategoryData({ selectCategoryData, searchData }) {
   );
 }
 
-export default CategoryData;
+export default TopListData;

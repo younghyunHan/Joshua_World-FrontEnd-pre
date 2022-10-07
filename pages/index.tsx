@@ -3,7 +3,7 @@ import axios from 'axios';
 import Link from 'next/link';
 
 import Modal from './Modal/Modal';
-import TOP_MENU_LIST from './TopMenuData';
+// import TOP_MENU_LIST from './TopMenuData';
 import TopListData from './TopListData/TopListData';
 import MainContent from './MainContent/MainContent';
 
@@ -68,18 +68,10 @@ function Main() {
         <header>
           <div id={MainStyles.topMenuWrap}>
             <ul id={MainStyles.topMenu}>
-              {TOP_MENU_LIST.map((data, index) => (
-                <li key={data.id} className={MainStyles.topMenuContent}>
-                  <Link href={data.movePath} className={MainStyles.goToSignIn}>
-                    {data.topMenu}
-                  </Link>
-                  {!(index === TOP_MENU_LIST.length) && (
-                    <div className={MainStyles.txtBar} />
-                  )}
-                </li>
-              ))}
-              <Link href="/SignIn" id={MainStyles.goToSignIn}>
-                {access_token ? '로그아웃' : '로그인'}
+              <Link href="/SignIn">
+                <span id={MainStyles.goToSignIn}>
+                  {access_token ? '로그아웃' : '로그인'}
+                </span>
               </Link>
             </ul>
           </div>
@@ -104,12 +96,8 @@ function Main() {
             />
             <div id={MainStyles.sideBarOneContent}>
               <span id={MainStyles.userName}>
-                {userInfoData ? userInfoData.user_name : 'Black'}
+                {userInfoData ? userInfoData.user_name : 'Undefined'}
               </span>
-              <span id={MainStyles.profile}>프로필</span>
-              <div id={MainStyles.addMan}>
-                <span id={MainStyles.addManContent}>이웃추가</span>
-              </div>
               <div id={MainStyles.editButtonWrap}>
                 <button id={MainStyles.editButton} onClick={showEditModal}>
                   Edit
@@ -134,11 +122,6 @@ function Main() {
                       key={navData['id']}
                       className={MainStyles.navDataContent}
                     >
-                      <img
-                        className={MainStyles.menuArrow}
-                        alt="menuArrow"
-                        src="/images/arrow.png"
-                      />
                       <span onClick={selectCategory}>
                         {navData['category']}
                       </span>

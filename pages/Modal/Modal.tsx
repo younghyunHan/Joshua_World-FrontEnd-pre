@@ -101,7 +101,6 @@ export default function Modal({ setModalOpen, handleUserData }) {
           if (response.data.message === 'SUCCESS') {
             alert('변경되었습니다.');
             setModalOpen(false);
-            console.log(response.data.user_img);
             handleUserData(
               response.data.user_name,
               response.data.user_img.filename,

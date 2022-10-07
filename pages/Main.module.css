@@ -17,22 +17,9 @@
 
 #goToSignIn {
   text-decoration: none;
-  color: gray;
-  font-size: 12px;
+  color: grey;
+  font-size: 14px;
   font-weight: 500;
-}
-
-.topMenuContent {
-  display: flex;
-  align-items: center;
-}
-
-.txtBar {
-  display: inline-block;
-  margin: 0 10px;
-  width: 1px;
-  height: 10px;
-  background-color: gray;
 }
 
 #headerImgBox {
@@ -80,33 +67,27 @@
 }
 
 #sideBarOneContent {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-#profile,
+#userName {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 #userName,
 #editButton {
   cursor: pointer;
 }
 
-#profile:after {
-  display: block;
-  width: 30px;
-  content: '';
-  border-bottom: 1px solid #b8bfc1;
-  transform: scaleX(0);
-  transition: transform 250ms ease-in-out;
-}
-
-#profile:hover:after {
-  transform: scaleX(1);
-}
-
 #userName:after {
   display: block;
-  width: 30px;
+  width: 60px;
   content: '';
   border-bottom: 1px solid #b8bfc1;
   transform: scaleX(0);
@@ -114,30 +95,6 @@
 }
 
 #userName:hover:after {
-  transform: scaleX(1);
-}
-
-#addMan {
-  width: 145px;
-  height: 38px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid #d9d9d9;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-#addManContent:after {
-  display: block;
-  width: 40px;
-  content: '';
-  border-bottom: 1px solid #b8bfc1;
-  transform: scaleX(0);
-  transition: transform 250ms ease-in-out;
-}
-
-#addManContent:hover:after {
   transform: scaleX(1);
 }
 

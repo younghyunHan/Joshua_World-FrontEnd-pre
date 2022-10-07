@@ -60,7 +60,7 @@ function Main() {
     });
   };
 
-  // console.log(userInfoData);
+  const userImg = userInfoData?.user_img;
 
   return (
     <div id={MainStyles.main}>
@@ -95,14 +95,11 @@ function Main() {
           <div id={MainStyles.sideBarOne}>
             <img
               id={MainStyles.myImg}
-              alt="myImgs"
+              alt="myImg"
               src={
                 userInfoData
-                  ? `http://localhost:3000/userInfoData?.user_img`
+                  ? `http://localhost:3000/${userImg}`
                   : '/images/myProfile.png'
-                // typeof userInfoData !== 'undefined'
-                //   ? userInfoData?.user_img
-                //   : '/images/myProfile.png'
               }
             />
             <div id={MainStyles.sideBarOneContent}>

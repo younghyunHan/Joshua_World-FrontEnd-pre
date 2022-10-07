@@ -83,7 +83,6 @@ export default function Modal({ setModalOpen, handleUserData }) {
 
       // console.log(inputRef.current?.files?.[0].name);
       const files = inputRef.current.files as FileList;
-      console.log(files[0]);
 
       const formData = new FormData();
       // formData.append('image', inputRef.current?.files?.[0].name);
@@ -99,11 +98,13 @@ export default function Modal({ setModalOpen, handleUserData }) {
           },
         })
         .then(function (response) {
-          // console.log(response);
           if (response.data.message === 'SUCCESS') {
             alert('변경되었습니다.');
-            // setModalOpen(false);
-            handleUserData(response.data.user_name, response.data.user_img);
+            setModalOpen(false);
+            handleUserData(
+              response.data.user_name,
+              response.data.user_img.filename,
+            );
           }
         });
     },
@@ -150,11 +151,7 @@ export default function Modal({ setModalOpen, handleUserData }) {
           type="file"
           accept="image/*"
           ref={inputRef}
-          // onChange={onUploadImage}
         />
-        {/* <button id={ModuleStyles.userImgBtn} onClick={onUploadImageButtonClick}>
-          이미지 업로드
-        </button> */}
       </div>
       <button
         id={ModuleStyles.editSubmitBtn}

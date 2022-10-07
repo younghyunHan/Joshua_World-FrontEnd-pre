@@ -20,7 +20,7 @@ function Main() {
 
   interface userInfoDataType {
     user_name: string;
-    user_img: object;
+    user_img: string;
   }
 
   // user_info 변경
@@ -53,15 +53,14 @@ function Main() {
     setModalOpen(!modalOpen);
   };
 
-  const handleUserData = (updatedUserName: string, updatedUserImg: object) => {
-    // console.log(upda$tedUserImg);
-    // console.log(updatedUserName);
+  const handleUserData = (updatedUserName: string, updatedUserImg: string) => {
     setUserInfoData({
-      // ...userInfoData,
       user_name: updatedUserName,
       user_img: updatedUserImg,
     });
   };
+
+  // console.log(userInfoData);
 
   return (
     <div id={MainStyles.main}>
@@ -99,7 +98,7 @@ function Main() {
               alt="myImg"
               src={
                 userInfoData
-                  ? userInfoData?.user_img?.fieldname
+                  ? `http://localhost:3000/userInfoData?.user_img`
                   : '/images/myProfile.png'
                 // typeof userInfoData !== 'undefined'
                 //   ? userInfoData?.user_img

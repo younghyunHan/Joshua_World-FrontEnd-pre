@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Pagination from 'react-js-pagination';
 import axios from 'axios';
 import Carousel from '../Carousel/Carousel';
-
 import MainContentStyles from './MainContent.module.css';
 import ButtonSlide from '../Carousel/ButtonSlide';
 
-function MainContent({ selectCategoryData }) {
+function MainContent() {
   const [page, setPage] = useState(1);
   const [indexOfLastRecord, setIndexOfLastRecord] = useState(5);
   const [indexOfFirstRecord, setIndexOfFirstRecord] = useState(0);
@@ -38,60 +37,23 @@ function MainContent({ selectCategoryData }) {
     }
   }, []);
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const access_token = localStorage.getItem('token');
-
-      axios
-        .get('http://localhost:3000/selectCategory', {
-          headers: {
-            Authorization: `${access_token}`,
-          },
-          params: {
-            category: selectCategoryData,
-          },
-        })
-        .then((response: any) => {
-          setCatagoryData(response.data);
-        });
-    }
-  }, [selectCategoryData]);
-
   return (
     <div id={MainContentStyles.MainContent}>
       <div id={MainContentStyles.MainContentWrap}>
-        {categoryData.length > 0
-          ? categoryData
-              .slice(indexOfFirstRecord, indexOfLastRecord)
-              .map((data, index) => (
-                <div key={index} className={MainContentStyles.mainContentData}>
-                  <img
-                    alt="contentImg"
-                    src="/images/javaScript_logo.png"
-                    className={MainContentStyles.myImg}
-                  />
-                  <span className={MainContentStyles.myImgTitle}>
-                    {data['title']}
-                  </span>
-                </div>
-              ))
-          : allData
-              .slice(indexOfFirstRecord, indexOfLastRecord)
-              .map((data, index) => (
-                <div
-                  key={data['id']}
-                  className={MainContentStyles.mainContentData}
-                >
-                  <img
-                    alt="contentImg"
-                    src="/images/typeScript_logo.png"
-                    className={MainContentStyles.myImg}
-                  />
-                  <span className={MainContentStyles.myImgTitle}>
-                    {data['title']}
-                  </span>
-                </div>
-              ))}
+        {allData
+          .slice(indexOfFirstRecord, indexOfLastRecord)
+          .map((data, index) => (
+            <div key={data['id']} className={MainContentStyles.mainContentData}>
+              <img
+                alt="contentImg"
+                src="/images/typeScript_logo.png"
+                className={MainContentStyles.myImg}
+              />
+              <span className={MainContentStyles.myImgTitle}>
+                {data['title']}
+              </span>
+            </div>
+          ))}
       </div>
       <Pagination
         activePage={page} // 현재 페이지

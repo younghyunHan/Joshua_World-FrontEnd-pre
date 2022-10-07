@@ -3,7 +3,6 @@ import axios from 'axios';
 import Link from 'next/link';
 
 import Modal from './Modal/Modal';
-// import TOP_MENU_LIST from './TopMenuData';
 import TopListData from './TopListData/TopListData';
 import MainContent from './MainContent/MainContent';
 
@@ -96,7 +95,7 @@ function Main() {
             />
             <div id={MainStyles.sideBarOneContent}>
               <span id={MainStyles.userName}>
-                {userInfoData ? userInfoData.user_name : 'Undefined'}
+                {userInfoData?.user_name ? userInfoData.user_name : 'Undefined'}
               </span>
               <div id={MainStyles.editButtonWrap}>
                 <button id={MainStyles.editButton} onClick={showEditModal}>
@@ -154,7 +153,7 @@ function Main() {
             </div>
           </div>
         </div>
-        <MainContent selectCategoryData={selectCategoryData} />
+        <MainContent />
       </div>
       {modalOpen && (
         <Modal setModalOpen={showEditModal} handleUserData={handleUserData} />

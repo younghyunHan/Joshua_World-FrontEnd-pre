@@ -22,6 +22,10 @@
   font-weight: 500;
 }
 
+#goToSignIn:hover {
+  cursor: pointer;
+}
+
 #headerImgBox {
   padding: 10px;
 }

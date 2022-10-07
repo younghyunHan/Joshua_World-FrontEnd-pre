@@ -9,8 +9,6 @@ function TopListData({ searchData, selectCategoryData }) {
   const [page, setPage] = useState(1);
   const [indexOfLastRecord, setIndexOfLastRecord] = useState(5);
   const [indexOfFirstRecord, setIndexOfFirstRecord] = useState(0);
-  const [allData, setAllData] = useState([]);
-  const [returnSearchdata, setReturnSearchData] = useState([]);
   const [listData, setListData] = useState([]);
 
   const handlePageChange = (page: number) => {
@@ -43,25 +41,6 @@ function TopListData({ searchData, selectCategoryData }) {
       const access_token = localStorage.getItem('token');
 
       axios
-        .get('http://localhost:3000/searchData', {
-          headers: {
-            Authorization: `${access_token}`,
-          },
-          params: {
-            searchData: searchData,
-          },
-        })
-        .then((response: any) => {
-          setListData(response.data);
-        });
-    }
-  }, [searchData]);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const access_token = localStorage.getItem('token');
-
-      axios
         .get('http://localhost:3000/selectCategory', {
           headers: {
             Authorization: `${access_token}`,
@@ -75,6 +54,25 @@ function TopListData({ searchData, selectCategoryData }) {
         });
     }
   }, [selectCategoryData]);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const access_token = localStorage.getItem('token');
+
+      axios
+        .get('http://localhost:3000/searchData', {
+          headers: {
+            Authorization: `${access_token}`,
+          },
+          params: {
+            searchData: searchData,
+          },
+        })
+        .then((response: any) => {
+          setListData(response.data);
+        });
+    }
+  }, [searchData]);
 
   return (
     <article>

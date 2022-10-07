@@ -95,7 +95,7 @@ function Main() {
           <div id={MainStyles.sideBarOne}>
             <img
               id={MainStyles.myImg}
-              alt="myImg"
+              alt="myImgs"
               src={
                 userInfoData
                   ? `http://localhost:3000/userInfoData?.user_img`

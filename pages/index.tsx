@@ -11,6 +11,8 @@ import MainStyles from './Main.module.css';
 function Main() {
   const [categoryVisible, setCategoryVisible] = useState(true);
   const [navList, setNavList] = useState([]);
+
+  const [userName, setUserName] = useState('');
   const [selectCategoryData, setSelectCategoryData] = useState('');
   const [searchData, setSearchData] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
@@ -36,6 +38,18 @@ function Main() {
       })
       .then(function (response) {
         setNavList(response.data);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:3000/userName', {
+        headers: {
+          Authorization: `${access_token}`,
+        },
+      })
+      .then(function (response) {
+        setUserName(response.data[0].user_name);
       });
   }, []);
 
@@ -95,7 +109,7 @@ function Main() {
             />
             <div id={MainStyles.sideBarOneContent}>
               <span id={MainStyles.userName}>
-                {userInfoData?.user_name ? userInfoData.user_name : 'Undefined'}
+                {userInfoData?.user_name ? userInfoData.user_name : userName}
               </span>
               <div id={MainStyles.editButtonWrap}>
                 <button id={MainStyles.editButton} onClick={showEditModal}>

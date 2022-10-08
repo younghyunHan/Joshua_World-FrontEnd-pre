@@ -74,6 +74,8 @@ function TopListData({ searchData, selectCategoryData }) {
     }
   }, [searchData]);
 
+  console.log(listData);
+
   return (
     <article>
       <section id={TopListDataStyles.listTop}>

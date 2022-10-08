@@ -11,8 +11,9 @@ import MainStyles from './Main.module.css';
 function Main() {
   const [categoryVisible, setCategoryVisible] = useState(true);
   const [navList, setNavList] = useState([]);
-
   const [userName, setUserName] = useState('');
+
+  const [listData, setListData] = useState([]);
   const [selectCategoryData, setSelectCategoryData] = useState('');
   const [searchData, setSearchData] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
@@ -28,6 +29,60 @@ function Main() {
   const [userInfoData, setUserInfoData] = useState<null | userInfoDataType>(
     null,
   );
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const access_token = localStorage.getItem('token');
+
+      axios
+        .get('http://localhost:3000/list', {
+          headers: {
+            Authorization: `${access_token}`,
+          },
+        })
+        .then(function (response) {
+          setListData(response.data);
+        });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const access_token = localStorage.getItem('token');
+
+      axios
+        .get('http://localhost:3000/selectCategory', {
+          headers: {
+            Authorization: `${access_token}`,
+          },
+          params: {
+            category: selectCategoryData,
+          },
+        })
+        .then((response: any) => {
+          setListData(response.data);
+        });
+    }
+  }, [selectCategoryData]);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const access_token = localStorage.getItem('token');
+
+      axios
+        .get('http://localhost:3000/searchData', {
+          headers: {
+            Authorization: `${access_token}`,
+          },
+          params: {
+            searchData: searchData,
+          },
+        })
+        .then((response: any) => {
+          setListData(response.data);
+        });
+    }
+  }, [searchData]);
 
   useEffect(() => {
     axios
@@ -160,14 +215,11 @@ function Main() {
         <div id={MainStyles.mainContent}>
           <div id={MainStyles.listWrap}>
             <div id={MainStyles.list}>
-              <TopListData
-                searchData={searchData}
-                selectCategoryData={selectCategoryData}
-              />
+              <TopListData topListData={listData} />
             </div>
           </div>
         </div>
-        <MainContent />
+        <MainContent MainContentListData={listData} />
       </div>
       {modalOpen && (
         <Modal setModalOpen={showEditModal} handleUserData={handleUserData} />

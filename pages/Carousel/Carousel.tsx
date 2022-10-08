@@ -9,7 +9,7 @@ function Carousel({ allData }) {
   const settings = {
     dots: false,
     infinity: true,
-    speed: 500,
+    speed: 1000,
     autoplay: true,
     autoplaySpeed: 2500,
     arrow: true,

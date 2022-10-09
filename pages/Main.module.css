@@ -154,6 +154,18 @@
   margin-bottom: 10px;
   cursor: pointer;
   color: #6baad3;
+  transition: all 0.2s ease-in-out;
+}
+
+.navDataContent:hover {
+  font-weight: bold;
+  transform: scale(1.05);
+}
+
+.navDataContentTitle {
+}
+
+.navDataContentTitle:hover {
 }
 
 .menuArrow {

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState, useMemo } from 'react';
+import { useCallback, useEffect, useState, useRef } from 'react';
 import SignUpStyles from './SignUp.module.css';
 import React from 'react';
 import { useRouter } from 'next/router';
@@ -24,6 +24,12 @@ export default function Index() {
   const [isPasswordConfirm, setIsPasswordConfirm] = useState<boolean>(false);
 
   const router = useRouter();
+
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
 
   const signUp = (event: any) => {
     event.preventDefault();
@@ -125,6 +131,7 @@ export default function Index() {
             <div id={SignUpStyles.signUpTitle}>회원가입</div>
             <input
               id={SignUpStyles.userName}
+              ref={inputRef}
               type="text"
               name="user_name"
               placeholder="닉네임"

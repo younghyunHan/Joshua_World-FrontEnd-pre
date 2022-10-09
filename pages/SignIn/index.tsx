@@ -1,17 +1,10 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import SignInStyles from './SignIn.module.css';
 import React from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 export default function Index() {
-  // const inputRef = useRef<HTMLDivElement>(null);
-
-  // useEffect(() => {
-  //   console.log(inputRef);
-  //   inputRef.current.focus();
-  // }, []);
-
   //이름, 이메일, 비밀번호, 비밀번호 확인
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -29,6 +22,12 @@ export default function Index() {
   const [isPasswordConfirm, setIsPasswordConfirm] = useState<boolean>(false);
 
   const router = useRouter();
+
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
 
   const signIn = (event: any) => {
     event.preventDefault();
@@ -120,7 +119,7 @@ export default function Index() {
             <div id={SignInStyles.signInTitle}>로그인</div>
             <input
               id={SignInStyles.userId}
-              // ref={inputRef}
+              ref={inputRef}
               type="text"
               name="user_id"
               placeholder="전화번호, 사용자 이름 또는 이메일"

@@ -39,6 +39,7 @@
 
 #sideBar {
   float: left;
+  top: 0px;
   width: 190px;
   display: flex;
   flex-direction: column;
@@ -160,12 +161,6 @@
 .navDataContent:hover {
   font-weight: bold;
   transform: scale(1.05);
-}
-
-.navDataContentTitle {
-}
-
-.navDataContentTitle:hover {
 }
 
 .menuArrow {

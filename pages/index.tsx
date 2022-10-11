@@ -190,7 +190,10 @@ function Main() {
                       key={navData['id']}
                       className={MainStyles.navDataContent}
                     >
-                      <span onClick={selectCategory}>
+                      <span
+                        onClick={selectCategory}
+                        className={MainStyles.navDataContentTitle}
+                      >
                         {navData['category']}
                       </span>
                     </li>

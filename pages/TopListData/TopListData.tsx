@@ -12,8 +12,6 @@ function TopListData({ topListData }) {
 
   const [limit, setLimit] = useState(10);
 
-  const offset = (page - 1) * limit;
-
   const handlePageChange = (page: number) => {
     setPage(page);
     setIndexOfLastRecord(page * 5); // 현재 페이지 * 레코드당 페이지;

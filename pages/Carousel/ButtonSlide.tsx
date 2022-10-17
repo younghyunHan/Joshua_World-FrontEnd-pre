@@ -18,7 +18,6 @@ function ButtonSlide({ allData }) {
   // }
 
   function handleSwipe(direction: any) {
-    // handleSlide(currentIndex + direction);
     setCurrentIndex(currentIndex + direction);
   }
 

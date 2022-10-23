@@ -44,7 +44,7 @@ function TopListData({ topListData }) {
             {data['title']}
           </div>
         ))}
-        <Pagination
+        {/* <Pagination
           activePage={page} // 현재 페이지
           itemsCountPerPage={5} // 한 페이지당 보여줄 리스트 아이템의 개수
           totalItemsCount={topListData.length} // 총 아이템의 개수
@@ -52,7 +52,7 @@ function TopListData({ topListData }) {
           prevPageText="‹" // "이전"을 나타낼 텍스트 (prev, <, ...)
           nextPageText="›" // "다음"을 나타낼 텍스트 (next, >, ...)
           onChange={handlePageChange} // 페이지가 바뀔 때 핸들링해줄 함수
-        />
+        /> */}
       </section>
     </article>
   );

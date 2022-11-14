@@ -8,16 +8,17 @@ export default function NextSlideButton({
   onClick,
 }) {
   return (
-    <button
-      onClick={onClick}
-      className={NextSlideButtonStyles.btnNext}
-      style={{ display: currentIndex === dataLength.length ? 'none' : '' }}
-    >
-      <img
-        src="/images/leftArrow.png"
-        alt="rightArrow"
-        id={NextSlideButtonStyles.rightArrow}
-      />
-    </button>
+    <div></div>
+    // <button
+    //   onClick={onClick}
+    //   className={NextSlideButtonStyles.btnNext}
+    //   style={{ display: currentIndex === dataLength.length ? 'none' : '' }}
+    // >
+    //   <img
+    //     src="/images/leftArrow.png"
+    //     alt="rightArrow"
+    //     id={NextSlideButtonStyles.rightArrow}
+    //   />
+    // </button>
   );
 }

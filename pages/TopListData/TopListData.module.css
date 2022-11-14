@@ -1,4 +1,4 @@
-#listTopWrap {
+/* #listTopWrap {
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -36,4 +36,4 @@
   border-bottom: 1px solid #e1e0e0;
   font-size: 13px;
   cursor: pointer;
-}
+} */

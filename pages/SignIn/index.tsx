@@ -116,7 +116,7 @@ export default function Index() {
         <div id={SignInStyles.signInFormTop}>
           <h1 id={SignInStyles.signInFormName}>Blog</h1>
           <div id={SignInStyles.signInFormTopContent}>
-            <div id={SignInStyles.signInTitle}>로그인</div>
+            <div id={SignInStyles.signInTitle}>Sign In</div>
             <input
               id={SignInStyles.userId}
               ref={inputRef}
@@ -183,11 +183,11 @@ export default function Index() {
             onClick={signIn}
             disabled={!(isEmail && isPassword && isPasswordConfirm)}
           >
-            로그인
+            Sign In
           </button>
           <Link href="/SignUp">
             <button type="button" id={SignInStyles.goToSignUp}>
-              회원가입
+              Sign Up
             </button>
           </Link>
         </div>

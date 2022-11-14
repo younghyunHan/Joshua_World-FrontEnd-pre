@@ -1,8 +1,13 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
-import SignInStyles from './SignIn.module.css';
+
 import React from 'react';
+
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+
+import Nav from '../Components/Nav';
+
+import SignInStyles from './SignIn.module.css';
 
 export default function Index() {
   //이름, 이메일, 비밀번호, 비밀번호 확인
@@ -111,87 +116,92 @@ export default function Index() {
   );
 
   return (
-    <div id={SignInStyles.signIn}>
-      <form id={SignInStyles.signInForm}>
-        <div id={SignInStyles.signInFormTop}>
-          <h1 id={SignInStyles.signInFormName}>Blog</h1>
-          <div id={SignInStyles.signInFormTopContent}>
-            <div id={SignInStyles.signInTitle}>Sign In</div>
-            <input
-              id={SignInStyles.userId}
-              ref={inputRef}
-              type="text"
-              name="user_id"
-              placeholder="전화번호, 사용자 이름 또는 이메일"
-              onChange={onChangeEmail}
-            />
-            {email.length > 0 && (
-              <span
-                className={`${
-                  isEmail ? `${SignInStyles.success}` : `${SignInStyles.error}`
-                }`}
-              >
-                {emailMessage}
-              </span>
-            )}
-            <input
-              id={SignInStyles.userPassword}
-              type="password"
-              name="user_pw"
-              placeholder="비밀번호"
-              onChange={onChangePassword}
-            />
-            {password.length > 0 && (
-              <span
-                className={`${
-                  isPassword
-                    ? `${SignInStyles.success}`
-                    : `${SignInStyles.error}`
-                }`}
-              >
-                {passwordMessage}
-              </span>
-            )}
-            <input
-              id={SignInStyles.userPassword}
-              type="password"
-              name="user_pw_confirm"
-              placeholder="비밀번호 확인"
-              onChange={onChangePasswordConfirm}
-            />
-            {passwordConfirm.length > 0 && (
-              <span
-                className={`${
-                  isPasswordConfirm
-                    ? `${SignInStyles.success}`
-                    : `${SignInStyles.error}`
-                }`}
-              >
-                {passwordConfirmMessage}
-              </span>
-            )}
+    <>
+      <Nav />
+      <div id={SignInStyles.signIn}>
+        <form id={SignInStyles.signInForm}>
+          <div id={SignInStyles.signInFormTop}>
+            <h1 id={SignInStyles.signInFormName}>Blog</h1>
+            <div id={SignInStyles.signInFormTopContent}>
+              <div id={SignInStyles.signInTitle}>Sign In</div>
+              <input
+                id={SignInStyles.userId}
+                ref={inputRef}
+                type="text"
+                name="user_id"
+                placeholder="전화번호, 사용자 이름 또는 이메일"
+                onChange={onChangeEmail}
+              />
+              {email.length > 0 && (
+                <span
+                  className={`${
+                    isEmail
+                      ? `${SignInStyles.success}`
+                      : `${SignInStyles.error}`
+                  }`}
+                >
+                  {emailMessage}
+                </span>
+              )}
+              <input
+                id={SignInStyles.userPassword}
+                type="password"
+                name="user_pw"
+                placeholder="비밀번호"
+                onChange={onChangePassword}
+              />
+              {password.length > 0 && (
+                <span
+                  className={`${
+                    isPassword
+                      ? `${SignInStyles.success}`
+                      : `${SignInStyles.error}`
+                  }`}
+                >
+                  {passwordMessage}
+                </span>
+              )}
+              <input
+                id={SignInStyles.userPassword}
+                type="password"
+                name="user_pw_confirm"
+                placeholder="비밀번호 확인"
+                onChange={onChangePasswordConfirm}
+              />
+              {passwordConfirm.length > 0 && (
+                <span
+                  className={`${
+                    isPasswordConfirm
+                      ? `${SignInStyles.success}`
+                      : `${SignInStyles.error}`
+                  }`}
+                >
+                  {passwordConfirmMessage}
+                </span>
+              )}
+            </div>
           </div>
-        </div>
-        <div id={SignInStyles.SignInBtnWrap}>
-          <button
-            type="button"
-            className={`${SignInStyles.signInBtn} ${
-              isEmail && isPassword && isPasswordConfirm
-                ? `${SignInStyles.signInBtnLive}`
-                : ''
-            }`}
-            onClick={signIn}
-            disabled={!(isEmail && isPassword && isPasswordConfirm)}
-          >
-            Sign In
-          </button>
-          <Link href="/SignUp">
-            <button type="button" id={SignInStyles.goToSignUp}>
-              Sign Up
+          <div id={SignInStyles.SignInBtnWrap}>
+            <button
+              type="button"
+              className={`${SignInStyles.signInBtn} ${
+                isEmail && isPassword && isPasswordConfirm
+                  ? `${SignInStyles.signInBtnLive}`
+                  : ''
+              }`}
+              onClick={signIn}
+              disabled={!(isEmail && isPassword && isPasswordConfirm)}
+            >
+              Sign In
             </button>
-          </Link>
-        </div>
-      </form>
-    </div>
+            <Link href="/SignUp">
+              <button type="button" id={SignInStyles.goToSignUp}>
+                Sign Up
+              </button>
+            </Link>
+          </div>
+        </form>
+      </div>
+    </>
   );
 }

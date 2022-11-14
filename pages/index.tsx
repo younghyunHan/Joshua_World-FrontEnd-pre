@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
 
+import Nav from './Components/Nav';
 import Modal from './Modal/Modal';
 import TopListData from './TopListData/TopListData';
 import MainContent from './MainContent/MainContent';
@@ -131,103 +132,98 @@ function Main() {
   const userImg = userInfoData?.user_img;
 
   return (
-    <div id={MainStyles.main}>
-      <div id={MainStyles.mainWrap}>
-        <header>
-          <div id={MainStyles.topMenuWrap}>
-            <ul id={MainStyles.topMenu}>
-              <Link href="/SignIn">
-                <span id={MainStyles.goToSignIn}>
-                  {access_token ? '로그아웃' : '로그인'}
-                </span>
-              </Link>
-            </ul>
-          </div>
-          <div id={MainStyles.headerImgBox}>
-            <img
-              id={MainStyles.headerImg}
-              alt="myImg"
-              src="/images/headerImg.png"
-            />
-          </div>
-        </header>
-        <nav id={MainStyles.sideBar}>
-          <div id={MainStyles.sideBarOne}>
-            <img
-              id={MainStyles.myImg}
-              alt="myImg"
-              src={
-                userInfoData
-                  ? `http://localhost:3000/${userImg}`
-                  : '/images/myProfile.png'
-              }
-            />
-            <div id={MainStyles.sideBarOneContent}>
-              <span id={MainStyles.userName}>
-                {userInfoData?.user_name ? userInfoData.user_name : userName}
-              </span>
-              <div id={MainStyles.editButtonWrap}>
-                <button id={MainStyles.editButton} onClick={showEditModal}>
-                  Edit
-                </button>
-              </div>
-            </div>
-          </div>
-          <div id={MainStyles.sideBarTwo}>
-            <div id={MainStyles.navData}>
-              <div
-                id={MainStyles.category}
-                onClick={() => {
-                  setCategoryVisible(!categoryVisible);
-                }}
-              >
-                category
-              </div>
-              {categoryVisible && (
-                <ul>
-                  {navList.map(navData => (
-                    <li
-                      key={navData['id']}
-                      className={MainStyles.navDataContent}
-                    >
-                      <span
-                        onClick={selectCategory}
-                        className={MainStyles.navDataContentTitle}
-                      >
-                        {navData['category']}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          </div>
-          <div id={MainStyles.searchBox}>
-            <input
-              placeholder="검색"
-              id={MainStyles.search}
-              onChange={searchUsersInput}
-            />
-            <img
-              id={MainStyles.searchIcon}
-              alt="searchIcon"
-              src="/images/search.png"
-            />
-          </div>
-        </nav>
-        <div id={MainStyles.mainContent}>
-          <div id={MainStyles.listWrap}>
-            <div id={MainStyles.list}>
-              <TopListData topListData={listData} />
-            </div>
-          </div>
+    <>
+      <header>
+        <div id={MainStyles.title}>
+          <h1>Joshua_World</h1>
+          <img
+            id={MainStyles.headerImg}
+            alt="headerImg"
+            src={'/images/headerImg.png'}
+          />
         </div>
-        <MainContent MainContentListData={listData} />
+        <Nav />
+      </header>
+      <div id={MainStyles.main}>
+        <div id={MainStyles.mainWrap}>
+          <nav id={MainStyles.sideBar}>
+            <div id={MainStyles.sideBarOne}>
+              <img
+                id={MainStyles.myImg}
+                alt="myImg"
+                src={
+                  userInfoData
+                    ? `http://localhost:3000/${userImg}`
+                    : '/images/myProfile.png'
+                }
+              />
+              <div id={MainStyles.sideBarOneContent}>
+                <span id={MainStyles.userName}>
+                  {userInfoData?.user_name ? userInfoData.user_name : userName}
+                </span>
+                <div id={MainStyles.editButtonWrap}>
+                  <button id={MainStyles.editButton} onClick={showEditModal}>
+                    Edit
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div id={MainStyles.sideBarTwo}>
+              <div id={MainStyles.navData}>
+                <div
+                  id={MainStyles.category}
+                  onClick={() => {
+                    setCategoryVisible(!categoryVisible);
+                  }}
+                >
+                  category
+                </div>
+                {categoryVisible && (
+                  <ul>
+                    {navList.map(navData => (
+                      <li
+                        key={navData['id']}
+                        className={MainStyles.navDataContent}
+                      >
+                        <span
+                          onClick={selectCategory}
+                          className={MainStyles.navDataContentTitle}
+                        >
+                          {navData['category']}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </div>
+            <div id={MainStyles.searchBox}>
+              <input
+                placeholder="검색"
+                id={MainStyles.search}
+                onChange={searchUsersInput}
+              />
+              <img
+                id={MainStyles.searchIcon}
+                alt="searchIcon"
+                src="/images/search.png"
+              />
+            </div>
+          </nav>
+          <div id={MainStyles.mainContent}>
+            <div id={MainStyles.listWrap}>
+              <div id={MainStyles.list}>
+                <TopListData topListData={listData} />
+              </div>
+            </div>
+          </div>
+          <MainContent MainContentListData={listData} />
+        </div>
+        {modalOpen && (
+          <Modal setModalOpen={showEditModal} handleUserData={handleUserData} />
+        )}
       </div>
-      {modalOpen && (
-        <Modal setModalOpen={showEditModal} handleUserData={handleUserData} />
-      )}
-    </div>
+    </>
   );
 }
 

@@ -26,11 +26,7 @@ function Nav() {
             alt="searchIcon"
             src="/images/search.png"
           />
-          <img
-            id={NavStyles.searchIcon}
-            alt="userIcon"
-            src="/images/user.png"
-          />
+          <img id={NavStyles.userIcon} alt="userIcon" src="/images/user.png" />
         </div>
       </ul>
     </nav>

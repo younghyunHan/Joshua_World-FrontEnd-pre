@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 // import axios from 'axios';
 // import Link from 'next/link';
 
-// import Nav from './Components/Nav';
+import Nav from './Components/Nav';
 // import Modal from './Modal/Modal';
 // import TopListData from './TopListData/TopListData';
 // import MainContent from './MainContent/MainContent';
 
-// import MainStyles from './Main.module.css';
+import MainStyles from './Main.module.css';
 
 function Main() {
   // const [categoryVisible, setCategoryVisible] = useState(true);
@@ -132,7 +132,20 @@ function Main() {
   // const userImg = userInfoData?.user_img;
 
   return (
-    <div></div>
+    <>
+      <header>
+        <div id={MainStyles.title}>
+          <h1>Joshua_World</h1>
+          <img
+            id={MainStyles.headerImg}
+            alt="headerImg"
+            src={'/images/headerImg.png'}
+          />
+        </div>
+        <Nav />
+      </header>
+      <main></main>
+    </>
     // <>
     //   <header>
     //     <div id={MainStyles.title}>

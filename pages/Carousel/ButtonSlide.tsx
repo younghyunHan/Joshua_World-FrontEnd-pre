@@ -59,7 +59,8 @@ function ButtonSlide({ allData }) {
     //     onClick={() => handleSwipe(1)}
     //   />
     // </div>
-  )
+    <div></div>
+  );
 }
 
 export default ButtonSlide;

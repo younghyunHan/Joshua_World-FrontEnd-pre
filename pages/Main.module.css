@@ -1,11 +1,11 @@
-#main {
+/* #main {
   display: flex;
   padding: 50px 260px;
 }
 
 #mainWrap {
   width: 800px;
-}
+} */
 
 #title {
   display: flex;
@@ -22,7 +22,7 @@
   object-fit: contain;
   cursor: pointer;
 }
-
+/* 
 #sideBar {
   float: left;
   top: 0px;
@@ -263,4 +263,4 @@
 .mainTextDataImg {
   width: 130px;
   height: 130px;
-}
+} */

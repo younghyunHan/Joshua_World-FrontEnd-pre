@@ -131,6 +131,14 @@ function Main() {
 
   // const userImg = userInfoData?.user_img;
 
+ 
+  useEffect(() => {
+    console.log('컴포넌트가 화면에 나타남');
+    return () => {
+      console.log('컴포넌트가 화면에서 사라짐');
+    };
+  }, []);
+
   return (
     <>
       <header>
@@ -144,7 +152,12 @@ function Main() {
         </div>
         <Nav />
       </header>
-      <main></main>
+      <main>
+        <section>
+          <h1>HOME</h1>
+        </section>
+        <section id={MainStyles.informationTech}></section>
+      </main>
     </>
     // <>
     //   <header>

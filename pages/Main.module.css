@@ -1,9 +1,4 @@
-/* #main {
-  display: flex;
-  padding: 50px 260px;
-}
-
-#mainWrap {
+/* #mainWrap {
   width: 800px;
 } */
 
@@ -20,6 +15,47 @@
 #headerImg {
   height: 40px;
   cursor: pointer;
+}
+
+#main {
+  padding: 50px 260px;
+}
+
+#informationTech {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+#mainTitle {
+  padding-left: 15px;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+#mainSubTitleBox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#mainSubTitleLeftLine {
+  width: 50px;
+  height: 1px;
+  border: none;
+  background-color: #dbdbdb;
+}
+
+#mainSubTitle {
+  font-weight: bold;
+  font-size: 13px;
+}
+
+#mainSubTitleRightLine {
+  width: 400px;
+  height: 1px;
+  border: none;
+  background-color: #dbdbdb;
 }
 
 /* 

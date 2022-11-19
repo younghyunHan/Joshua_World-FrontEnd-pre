@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 // import axios from 'axios';
 // import Link from 'next/link';
@@ -131,14 +132,6 @@ function Main() {
 
   // const userImg = userInfoData?.user_img;
 
- 
-  useEffect(() => {
-    console.log('컴포넌트가 화면에 나타남');
-    return () => {
-      console.log('컴포넌트가 화면에서 사라짐');
-    };
-  }, []);
-
   return (
     <>
       <header>
@@ -152,11 +145,15 @@ function Main() {
         </div>
         <Nav />
       </header>
-      <main>
-        <section>
-          <h1>HOME</h1>
+      <main id={MainStyles.main}>
+        <section id={MainStyles.informationTech}>
+          <h2 id={MainStyles.mainTitle}>HOME</h2>
+          <div id={MainStyles.mainSubTitleBox}>
+            <span id={MainStyles.mainSubTitleLeftLine} />
+            <strong id={MainStyles.mainSubTitle}>Information Technology</strong>
+            <span id={MainStyles.mainSubTitleRightLine} />
+          </div>
         </section>
-        <section id={MainStyles.informationTech}></section>
       </main>
     </>
     // <>

@@ -1,4 +1,4 @@
-#EditorWrap {
+/* #EditorWrap {
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -25,7 +25,7 @@
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #b8bfc1;
-}
+} */
 
 #postSubmit {
   width: 80px;

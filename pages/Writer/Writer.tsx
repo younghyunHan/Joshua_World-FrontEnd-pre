@@ -14,6 +14,7 @@ import WriterStyles from './Writer.module.css';
 // import codeSyntaxHighlight from '@toast-ui/editor-plugin-code-syntax-highlight';
 
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
+import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
 
 export default function Writer() {
   const Editor = dynamic(
@@ -21,10 +22,10 @@ export default function Writer() {
     { ssr: false },
   );
 
-  const colorSyntax = dynamic(
-    () => import('@toast-ui/editor-plugin-color-syntax'),
-    { ssr: false },
-  );
+  // const colorSyntax = dynamic(
+  //   () => import('@toast-ui/editor-plugin-color-syntax'),
+  //   { ssr: false },
+  // );
 
   return (
     <>

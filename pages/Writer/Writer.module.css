@@ -25,7 +25,7 @@
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #b8bfc1;
-} */
+} 
 
 #postSubmit {
   width: 80px;
@@ -39,4 +39,48 @@
 
 #postSubmit:hover {
   background-color: blue;
+} */
+
+#writer {
+  padding: 50px 260px;
+}
+
+#postPageTitle {
+  padding-bottom: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#postPageForm {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+#postThumnailWrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+#postTitle,
+#postThumbnail {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#postTitleInput,
+#postThumnailInput {
+  padding: 6px;
+  border: 1px solid #dadde6;
+  border-radius: 5px;
+}
+
+#postTitleInput {
+  margin-bottom: 8px;
+}
+
+#postThumnailInput {
+  width: 500px;
 }

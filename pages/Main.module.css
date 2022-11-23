@@ -18,7 +18,9 @@
 }
 
 #main {
-  padding: 50px 260px;
+  display: flex;
+  gap: 40px;
+  padding: 50px 240px;
 }
 
 #informationTech {
@@ -27,10 +29,24 @@
   gap: 30px;
 }
 
+#mainTitleBox {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
 #mainTitle {
   padding-left: 15px;
   font-weight: bold;
   font-size: 25px;
+}
+
+#indicators {
+  display: flex;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #3b88c3;
 }
 
 #mainSubTitleBox {
@@ -52,10 +68,55 @@
 }
 
 #mainSubTitleRightLine {
-  width: 400px;
+  width: 500px;
   height: 1px;
   border: none;
   background-color: #dbdbdb;
+}
+
+#mainPosts {
+  display: flex;
+  gap: 20px;
+}
+
+#mainPostsImg {
+  width: 300px;
+}
+
+#mainContentBox {
+  width: 405px;
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+}
+
+#mainContentTitle {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#mainContentHashTag {
+  color: #3b88c3;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+#mainContent {
+  line-height: 25px;
+  font-size: 13px;
+}
+
+#mainContentTime {
+  color: #2d75ad;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+#mainContentViews,
+#mainContentLikes {
+  color: #9b9999;
+  font-weight: bold;
+  font-size: 12px;
 }
 
 /* 

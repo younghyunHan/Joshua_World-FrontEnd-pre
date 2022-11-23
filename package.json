@@ -16,6 +16,7 @@
     "@toast-ui/editor-plugin-color-syntax": "^3.0.1",
     "@toast-ui/react-editor": "^3.2.2",
     "@types/ckeditor": "^4.9.10",
+    "@types/prismjs": "^1.26.0",
     "@types/react-js-pagination": "^3.0.4",
     "@types/react-slick": "^0.23.10",
     "axios": "^0.27.2",

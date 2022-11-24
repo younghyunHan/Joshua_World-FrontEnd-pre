@@ -20,7 +20,7 @@
 #main {
   display: flex;
   gap: 40px;
-  padding: 50px 240px;
+  padding: 50px 230px;
 }
 
 #informationTech {
@@ -77,46 +77,118 @@
 #mainPosts {
   display: flex;
   gap: 20px;
+  cursor: pointer;
 }
 
-#mainPostsImg {
+.mainPostsImg {
   width: 300px;
 }
 
-#mainContentBox {
+.mainContentBox {
   width: 405px;
   display: flex;
   flex-direction: column;
   gap: 19px;
 }
 
-#mainContentTitle {
+.mainContentTitle {
   font-size: 16px;
   font-weight: bold;
 }
 
-#mainContentHashTag {
+.mainContentHashTag {
   color: #3b88c3;
   font-size: 12px;
   font-weight: bold;
 }
 
-#mainContent {
+.mainContent {
   line-height: 25px;
   font-size: 13px;
 }
 
-#mainContentTime {
+.mainContentBottom {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.mainContentTime {
   color: #2d75ad;
   font-weight: bold;
   font-size: 13px;
 }
 
-#mainContentViews,
-#mainContentLikes {
+.mainContentViews,
+.mainContentLikes {
   color: #9b9999;
   font-weight: bold;
   font-size: 12px;
+}
+
+.verticalBar {
+  width: 1px;
+  height: 8px;
+  background-color: #9b9999;
+}
+
+#mainAside {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.asidePostBox {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+#asidePostBoxBottomLine {
+  width: 230px;
+  height: 1px;
+  border: none;
+  background-color: #dbdbdb;
+}
+
+.asidePostBoxTop {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+#likeImg,
+#viewsImg,
+#commentImg {
+  width: 30px;
+}
+
+.asidePostBoxTitle {
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.asidePostBoxBottom {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.aisdePostTime,
+.asidePostViews {
+  color: #706c6c;
+  font-weight: bold;
+  font-size: 10px;
+}
+
+.aisdePostLikes {
+  color: #2d75ad;
+  font-weight: bold;
+  font-size: 10px;
 }
 
 /* 

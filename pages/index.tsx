@@ -162,57 +162,84 @@ function Main() {
           <article id={MainStyles.mainPosts}>
             {/* map */}
             <img
-              id={MainStyles.mainPostsImg}
+              className={MainStyles.mainPostsImg}
               src="https://dersyb7nfifdf.cloudfront.net/blog/2021/08/frontend-backend-Copy.png"
             />
-            <div id={MainStyles.mainContentBox}>
-              <h3 id={MainStyles.mainContentTitle}>
+            <div className={MainStyles.mainContentBox}>
+              <h3 className={MainStyles.mainContentTitle}>
                 맨 땅에 헤딩하면서 배운 프론트엔드, 백엔드 성능 최적화
               </h3>
-              <div id={MainStyles.mainContentHashTag}>
+              <div className={MainStyles.mainContentHashTag}>
                 #성능 최적화 &nbsp;&nbsp;#리팩토링 &nbsp;&nbsp;#dry &nbsp;&nbsp;
                 #kiss
               </div>
-              <div id={MainStyles.mainContent}>
+              <div className={MainStyles.mainContent}>
                 구현이 전부가 아니다. 썸네일 출처 :
                 https://www.ironhack.com/en/web-development/front-end-vs-back-end-what-s-the-difference
                 프로젝트. 자바스크립트는 어떻게 돌아갈까? 브라우저 자바스크립트
                 엔진까지 알아보았습니다. 그렇다면 프론트엔드에서 자바스크립트는
                 어떻게...
               </div>
-              <div>
-                <span id={MainStyles.mainContentTime}>9 days ago</span>
-                <span id={MainStyles.mainContentViews}>14 views</span>
-                <span id={MainStyles.mainContentLikes}>0 Likes</span>
+              <div className={MainStyles.mainContentBottom}>
+                <span className={MainStyles.mainContentTime}>9 days ago</span>
+                <div className={MainStyles.verticalBar} />
+                <span className={MainStyles.mainContentViews}>14 views</span>
+                <div className={MainStyles.verticalBar} />
+                <span className={MainStyles.mainContentLikes}>0 Likes</span>
               </div>
             </div>
           </article>
         </section>
-        <aside>
-          <article>
-            {/* map */}
-            <h4>IN TECH 0 Likes</h4>
-            <h5>4. 자바스크립트 특징과 역사</h5>
-            <span>시간</span>
-            <span>views</span>
-            <span>0Likes</span>
+        <aside id={MainStyles.mainAside}>
+          <article className={MainStyles.asidePostBox}>
+            <div className={MainStyles.asidePostBoxTop}>
+              <img id={MainStyles.likeImg} src="/images/likes.png" />
+              <h4>IN TECH 0 Likes</h4>
+            </div>
+            <h5 className={MainStyles.asidePostBoxTitle}>
+              4. 자바스크립트 특징과 역사 | 웹 모르는 개발자
+            </h5>
+            <div className={MainStyles.asidePostBoxBottom}>
+              <span className={MainStyles.aisdePostTime}>9 days ago</span>
+              <div className={MainStyles.verticalBar} />
+              <span className={MainStyles.asidePostViews}>14 views</span>
+              <div className={MainStyles.verticalBar} />
+              <span className={MainStyles.aisdePostLikes}>0 Likes</span>
+            </div>
           </article>
-          <article>
-            {/* map */}
-            <h4>IN TECH 0 Likes</h4>
-            <h5>4. 자바스크립트 특징과 역사</h5>
-            <span>시간</span>
-            <span>views</span>
-            <span>0Likes</span>
+          <article className={MainStyles.asidePostBox}>
+            <div className={MainStyles.asidePostBoxTop}>
+              <img id={MainStyles.viewsImg} src="/images/views.png" />
+              <h4>IN TECH 18 Views</h4>
+            </div>
+            <h5 className={MainStyles.asidePostBoxTitle}>
+              4. 자바스크립트 특징과 역사 | 웹 모르는 개발자
+            </h5>
+            <div className={MainStyles.asidePostBoxBottom}>
+              <span className={MainStyles.aisdePostTime}>9 days ago</span>
+              <div className={MainStyles.verticalBar} />
+              <span className={MainStyles.asidePostViews}>14 views</span>
+              <div className={MainStyles.verticalBar} />
+              <span className={MainStyles.aisdePostLikes}>0 Likes</span>
+            </div>
           </article>
-          <article>
-            {/* map */}
-            <h4>IN TECH 0 Likes</h4>
-            <h5>4. 자바스크립트 특징과 역사</h5>
-            <span>시간</span>
-            <span>views</span>
-            <span>0Likes</span>
+          <article className={MainStyles.asidePostBox}>
+            <div className={MainStyles.asidePostBoxTop}>
+              <img id={MainStyles.commentImg} src="/images/comments.png" />
+              <h4>IN TECH 0 Comments</h4>
+            </div>
+            <h5 className={MainStyles.asidePostBoxTitle}>
+              4. 자바스크립트 특징과 역사 | 웹 모르는 개발자
+            </h5>
+            <div className={MainStyles.asidePostBoxBottom}>
+              <span className={MainStyles.aisdePostTime}>9 days ago</span>
+              <div className={MainStyles.verticalBar} />
+              <span className={MainStyles.asidePostViews}>14 views</span>
+              <div className={MainStyles.verticalBar} />
+              <span className={MainStyles.aisdePostLikes}>0 Likes</span>
+            </div>
           </article>
+          <span id={MainStyles.asidePostBoxBottomLine} />
         </aside>
       </main>
     </>

@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 // import Link from 'next/link';
 
 import Nav from './Components/Nav/Nav';
+import HeaderTitle from './Components/HeaderTitle/HeaderTitle';
 // import Modal from './Modal/Modal';
 // import TopListData from './TopListData/TopListData';
 // import MainContent from './MainContent/MainContent';
@@ -135,14 +136,7 @@ function Main() {
   return (
     <>
       <header>
-        <div id={MainStyles.title}>
-          <h1>Joshua_World</h1>
-          <img
-            id={MainStyles.headerImg}
-            alt="headerImg"
-            src={'/images/headerImg.png'}
-          />
-        </div>
+        <HeaderTitle />
         <Nav />
       </header>
       <main id={MainStyles.main}>

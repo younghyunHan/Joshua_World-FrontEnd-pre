@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic';
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 
 import Nav from '../Components/Nav/Nav';
+import HeaderTitle from '../Components/HeaderTitle/HeaderTitle';
 
 // CSS
 import WriterStyles from './Writer.module.css';
@@ -28,6 +29,7 @@ export default function Writer() {
 
   return (
     <>
+      <HeaderTitle />
       <Nav />
       <section id={WriterStyles.writer}>
         <h1 id={WriterStyles.postPageTitle}>ADD POST</h1>

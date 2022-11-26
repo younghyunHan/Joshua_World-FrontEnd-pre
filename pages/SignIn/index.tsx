@@ -5,7 +5,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
-import Nav from '../Components/Nav';
+import Nav from '../Components/Nav/Nav';
 
 import SignInStyles from './SignIn.module.css';
 

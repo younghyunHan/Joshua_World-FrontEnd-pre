@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 // import axios from 'axios';
 // import Link from 'next/link';
 
-import Nav from './Components/Nav';
+import Nav from './Components/Nav/Nav';
 // import Modal from './Modal/Modal';
 // import TopListData from './TopListData/TopListData';
 // import MainContent from './MainContent/MainContent';

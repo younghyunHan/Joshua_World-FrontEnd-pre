@@ -67,7 +67,7 @@ export default function Modal({ setModalOpen, handleUserData }) {
         );
         setIsPassword(false);
       } else {
-        setPasswordMessage('안전한 비밀번호에요 : )');
+        setPasswordMessage('안전한 비밀번호에요 :)');
         setIsPassword(true);
       }
     },

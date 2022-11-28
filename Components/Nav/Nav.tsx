@@ -10,7 +10,7 @@ function Nav() {
           <Link href="/">
             <span id={NavStyles.goToHome}>HOME</span>
           </Link>
-          <Link href="/Writer/Writer">
+          <Link href="/post">
             <span id={NavStyles.goToPost}>POST</span>
           </Link>
         </div>

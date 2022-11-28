@@ -4,7 +4,7 @@ import React from 'react';
 
 import { useRouter } from 'next/router';
 
-import Nav from '../../Components/Nav/Nav';
+import Nav from '../../components/Nav/Nav';
 
 import SignUpStyles from './SignUp.module.css';
 

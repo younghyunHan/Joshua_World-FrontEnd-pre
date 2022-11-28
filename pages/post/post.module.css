@@ -71,7 +71,7 @@
 }
 
 #postTitleInput,
-#postThumnailInput {
+#postThumnailLink {
   padding: 6px;
   border: 1px solid #dadde6;
   border-radius: 5px;
@@ -81,7 +81,7 @@
   margin-bottom: 8px;
 }
 
-#postThumnailInput {
+#postThumnailLink {
   width: 500px;
 }
 

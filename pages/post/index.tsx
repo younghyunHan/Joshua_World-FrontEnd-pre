@@ -16,22 +16,30 @@ export default function Post() {
     ssr: false,
   });
 
-  const postThumbnailInputRef = useRef<HTMLInputElement | null>(null);
+  const postTitleRef = useRef<HTMLInputElement>(null);
+  const postThumnailLinkRef = useRef<HTMLInputElement>(null);
+  const postThumbnailRef = useRef<HTMLInputElement>(null);
 
   const postUploadButtonClick = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
       event.preventDefault();
-      if (!postThumbnailInputRef.current) {
+      if (!postThumbnailRef.current) {
         return;
       }
 
-      const files = postThumbnailInputRef.current.files as FileList;
+      console.log(postTitleRef?.current?.value);
+      console.log(postThumnailLinkRef?.current?.value);
+      console.log(postThumbnailRef?.current?.files);
+
+      const savedTitle = postTitleRef?.current?.value as string;
+      const savedThumbnailLink = postThumnailLinkRef?.current?.value as string;
+      const savedImgs = postThumbnailRef.current.files as FileList;
 
       const formData = new FormData();
 
-      formData.append('postThumnailImg', files[0]);
-      // formData.append('postTitle', postTitle);
-      // formData.append('postThumbnailLink', postThumbnailInputRef);
+      formData.append('postThumnailImg', savedImgs[0]);
+      formData.append('postTitle', savedTitle);
+      formData.append('postThumbnailLink', savedThumbnailLink);
 
       axios
         .post('http://localhost:3000/userInfoUpdate', formData, {
@@ -46,8 +54,7 @@ export default function Post() {
           }
         });
     },
-    [],
-    // [postTitle, postThumbnailLink, postThumbnailInputRef],
+    [postTitleRef, postThumnailLinkRef, postThumbnailRef],
   );
 
   return (
@@ -63,21 +70,23 @@ export default function Post() {
             type="text"
             name="postTitle"
             placeholder="제목을 입력해주세요."
+            ref={postTitleRef}
           />
           <h2 id={PostStyles.postThumbnail}>Thumbnail</h2>
           <div id={PostStyles.postThumnailWrap}>
             <input
-              id={PostStyles.postThumnailInput}
+              id={PostStyles.postThumnailLink}
               type="text"
               name="postThumbnailLink"
               placeholder="링크를 입력해주세요."
+              ref={postThumnailLinkRef}
             />
             <span>or</span>
             <input
-              id={PostStyles.postThumnailBtn}
+              id={PostStyles.postThumnailInput}
               type="file"
               accept="image/*"
-              ref={postThumbnailInputRef}
+              ref={postThumbnailRef}
             />
           </div>
           <Editor />

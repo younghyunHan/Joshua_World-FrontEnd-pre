@@ -20,6 +20,13 @@ export default function Post() {
   const postThumnailLinkRef = useRef<HTMLInputElement>(null);
   const postThumbnailRef = useRef<HTMLInputElement>(null);
 
+  const savedTitle = postTitleRef?.current?.value;
+
+  console.log(savedTitle);
+  // console.log(postTitleRef?.current?.value);
+  // console.log(postThumnailLinkRef?.current?.value);
+  // console.log(postThumbnailRef?.current?.files);
+
   const postUploadButtonClick = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
       event.preventDefault();
@@ -27,9 +34,9 @@ export default function Post() {
         return;
       }
 
-      console.log(postTitleRef?.current?.value);
-      console.log(postThumnailLinkRef?.current?.value);
-      console.log(postThumbnailRef?.current?.files);
+      // console.log(postTitleRef?.current?.value);
+      // console.log(postThumnailLinkRef?.current?.value);
+      // console.log(postThumbnailRef?.current?.files);
 
       const savedTitle = postTitleRef?.current?.value as string;
       const savedThumbnailLink = postThumnailLinkRef?.current?.value as string;
